@@ -7,7 +7,7 @@
 
 ## Overview
 
-Three projects built during my Deep Learning coursework (ITAI-2376), each tackling a different way to communicate neural network concepts through software. The work ranges from a production-grade React application to a hand-illustrated interactive web comic — demonstrating both technical depth in deep learning and the ability to translate complex ideas into polished, user-facing products.
+Three projects and a lab notebook built during my Deep Learning coursework (ITAI-2376), each tackling a different way to communicate neural network concepts through software. The work ranges from a production-grade React application to a hand-illustrated interactive web comic — demonstrating both technical depth in deep learning and the ability to translate complex ideas into polished, user-facing products.
 
 ## Projects
 
@@ -46,6 +46,14 @@ Formal deep learning deliverables exploring an *Arrival*-inspired theme — a fi
 
 ---
 
+## Lab Notebooks
+
+| Notebook | Topics Covered |
+|---|---|
+| [L08 — Diffusion Models](./L08_Diffusion_DeMarcus_Crump_ITAI_2376.pdf) | Denoising diffusion probabilistic models (DDPMs), forward/reverse diffusion process, noise scheduling, U-Net architecture for denoising, image generation from random noise |
+
+---
+
 ## What I Learned in This Course
 
 This course covered the theory and practice of deep learning from the ground up. Below are the specific concepts I studied and applied across these three projects.
@@ -74,6 +82,12 @@ This course covered the theory and practice of deep learning from the ground up.
 - **Attention mechanisms** — How attention allows models to focus on relevant parts of an input sequence rather than compressing everything into a fixed-length vector.
 - **Neural approaches to language understanding** — Explored how deep learning represents and processes language differently from rule-based systems.
 
+### Generative Models — Diffusion (Lab 08)
+- **Denoising Diffusion Probabilistic Models (DDPMs)** — Learned how diffusion models generate images by learning to reverse a gradual noising process. The forward process adds Gaussian noise step-by-step until the image becomes pure noise; the reverse process trains a neural network to denoise one step at a time, recovering the original image.
+- **Noise scheduling** — How a variance schedule (β₁, β₂, ..., βₜ) controls how much noise is added at each timestep, and why the schedule matters for training stability and sample quality.
+- **U-Net architecture for denoising** — How a U-Net with skip connections serves as the backbone that predicts the noise to remove at each step, using timestep embeddings to condition the prediction.
+- **Image generation from noise** — Starting from pure random noise and iteratively denoising to produce realistic images — the core inference loop of diffusion models.
+
 ### PyTorch Implementation
 - Defined a complete CNN class (`ConvoShrimp`) inheriting from `nn.Module` with `__init__` and `forward` methods.
 - Built a full training loop: data loading with `DataLoader`, data augmentation with `transforms`, GPU acceleration with `torch.device("cuda")`, training/evaluation mode switching (`model.train()` / `model.eval()`), and `torch.no_grad()` for inference.
@@ -87,6 +101,7 @@ This course covered the theory and practice of deep learning from the ground up.
 |---|---|
 | **Deep Learning Theory** | Neurons, weights, biases, activation functions (ReLU, Sigmoid, Tanh), forward propagation, backpropagation, loss functions, gradient descent, regularization (dropout, batch normalization) |
 | **CNN Architecture** | Convolution, pooling, feature extraction, flatten, fully connected layers, softmax classification, architecture evolution (LeNet → EfficientNet) |
+| **Generative Models** | Denoising diffusion probabilistic models (DDPMs), noise scheduling, U-Net denoising, image generation from noise |
 | **Sequence Models** | Encoder-decoder architecture, attention mechanisms, neural language representation |
 | **PyTorch** | `nn.Module` subclassing, training loops, data augmentation, GPU acceleration, optimizer/scheduler configuration |
 | **Frontend Engineering** | React 19, Vite, TailwindCSS, Framer Motion, responsive design, scroll-driven animation, PDF generation |
@@ -100,15 +115,16 @@ This course covered the theory and practice of deep learning from the ground up.
 ```
 ITAI-2376-Deep-Learning/
 ├── README.md
-├── ConvoShrimp/                # React/Vite CNN visualization app
+├── L08_Diffusion_DeMarcus_Crump_ITAI_2376.pdf   # Lab 08: Diffusion Models
+├── ConvoShrimp/                                   # React/Vite CNN visualization app
 │   ├── src/
 │   ├── public/
 │   └── package.json
-├── Neural-Network-Squad/       # Interactive educational web comic
+├── Neural-Network-Squad/                          # Interactive educational web comic
 │   ├── index.html
 │   ├── images/
 │   └── screenshots/
-└── Arrival/                    # Presentation & report PDFs
+└── Arrival/                                       # Presentation & report PDFs
     ├── Arrival_Final_Presentation_ITAI_2376.pdf
     └── Arrival_Heptapod_Lab_Report.pdf
 ```
