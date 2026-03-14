@@ -146,6 +146,18 @@ Formal deep learning deliverables — a final presentation deck and technical la
 
 ---
 
+#### [Lab 08 — Diffusion Models](./ITAI-2376-Deep-Learning/L08_Diffusion_DeMarcus_Crump_ITAI_2376.pdf)
+A 89-page Jupyter notebook covering denoising diffusion probabilistic models (DDPMs) — from the forward noising process through reverse denoising and image generation.
+
+**Topics Covered:**
+- Forward/reverse diffusion process and noise scheduling
+- U-Net architecture for denoising
+- Image generation from random noise
+
+**Technologies:** Python, PyTorch, Diffusion Models, Jupyter Notebooks
+
+---
+
 ### Computer Vision (ITAI-1378)
 
 Hands-on image processing, object detection, and visual pattern recognition using deep learning models.
@@ -179,7 +191,8 @@ DeMarcus-Crump-AI-Portfolio/
 ├── ITAI-2376-Deep-Learning/                     # Deep Learning
 │   ├── ConvoShrimp/                             # CNN visualization app (React)
 │   ├── Neural-Network-Squad/                    # Interactive web comic
-│   └── Arrival/                                 # Research presentations
+│   ├── Arrival/                                 # Research presentations
+│   └── L08_Diffusion_*.pdf                      # Lab: Diffusion Models
 │
 ├── ITAI-1378-Computer-Vision/                   # Computer Vision
 │   ├── Workplace-Safety-PPE-Detection-System/   # YOLOv8 object detection
