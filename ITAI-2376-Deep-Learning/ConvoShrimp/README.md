@@ -77,12 +77,29 @@ ConvoShrimp/
 └── vite.config.js
 ```
 
-## Learning Outcomes
+## What I Learned (Deep Learning Concepts)
 
-- Deepened understanding of CNN internals by building visual explanations for each layer type
-- Gained hands-on experience with React component architecture, animation libraries, and client-side PDF generation
-- Practiced translating technical deep learning concepts into accessible, interactive formats
-- Collaborated in a 4-person team using Git for version control and task coordination
+**CNN Architecture — layer by layer:**
+- **Convolution layers** apply learnable kernels (3×3) that slide across the input computing dot products. The first layer detects edges and gradients; deeper layers combine those into textures (layer 2, 64 filters) and object parts (layer 3, 128 filters). I learned that each filter learns a different feature detector through backpropagation.
+- **ReLU activation** (`f(x) = max(0, x)`) introduces non-linearity between layers. Without it, stacking linear layers collapses to a single linear transformation — the network could only learn straight-line relationships. ReLU solves the vanishing gradient problem for positive values because its derivative is always 1.
+- **Max pooling** (`MaxPool2d(2,2)`) reduces spatial dimensions by half, keeping only the strongest activation in each 2×2 region. This provides translation invariance (a feature detected slightly left or right still survives pooling) and reduces computation.
+- **Batch normalization** (`BatchNorm2d`) normalizes activations to zero mean and unit variance between layers, which stabilizes training and allows higher learning rates.
+- **Dropout** (`Dropout(0.5)`) randomly zeros half the neurons during training, forcing the network to not rely on any single neuron — this is a regularization technique that reduces overfitting.
+- **Flatten → Dense layers** — Converting 3D feature maps (128 × 4 × 4 = 2,048 values) into a 1D vector, then passing through fully connected layers (512 → 256 → num_classes) where every neuron connects to every neuron in the previous layer.
+- **Softmax output** converts raw scores (logits) into probabilities that sum to 1 for multi-class classification.
+
+**Training pipeline (PyTorch):**
+- Defined a CNN class inheriting from `nn.Module` with `__init__` (architecture) and `forward` (data flow) methods.
+- Used `CrossEntropyLoss` for multi-class classification and `Adam` optimizer with `StepLR` learning rate scheduler.
+- Applied data augmentation (`RandomHorizontalFlip`, `RandomCrop`) and normalization to CIFAR-10 (60K images, 10 classes).
+- Implemented train/eval mode switching and `torch.no_grad()` for inference.
+
+**CNN history:**
+- Studied the evolution from LeNet (1989, 60K params, digit recognition) → AlexNet (2012, 60M params, introduced ReLU and GPU training, won ImageNet) → VGGNet (2014, showed depth matters with 3×3 filters) → GoogLeNet (2014, Inception modules, 1×1 convolutions for efficiency) → ResNet (2015, skip connections enabling 152+ layers) → EfficientNet (2019, compound scaling for optimal width/depth/resolution).
+
+**Frontend skills:**
+- React 19 component architecture, Framer Motion scroll-driven animation, Prism.js syntax highlighting, client-side PDF generation with @react-pdf/renderer and html2pdf.js.
+- Collaborated in a 4-person team using Git for version control.
 
 ## Team
 

@@ -25,12 +25,20 @@ The project produced two formal deliverables: a final presentation deck and a te
 
 No code or installation required. Deliverables are PDF documents viewable in any PDF reader.
 
-## Learning Outcomes
+## What I Learned (Deep Learning Concepts)
 
-- Practiced structuring and delivering technical presentations on deep learning topics
-- Developed skills in writing formal research-style reports for a technical audience
-- Learned to apply neural network concepts to creative, interdisciplinary scenarios
-- Strengthened ability to communicate complex ML ideas in both written and visual formats
+**Sequence-to-sequence models:**
+- Studied encoder-decoder architectures where an encoder processes a variable-length input sequence into a fixed-length context vector, and a decoder generates an output sequence from that vector. Applied this to the heptapod language scenario — framing alien symbol decoding as a sequence transduction problem.
+
+**Attention mechanisms:**
+- Learned how attention solves the bottleneck of compressing an entire input sequence into a single vector. Instead, the decoder attends to different parts of the encoder's output at each step, weighting which input positions are most relevant. This is the core idea behind Transformers.
+
+**Neural approaches to language representation:**
+- Explored how deep learning represents words and symbols as dense numerical vectors (embeddings) rather than discrete symbols. These embeddings capture semantic relationships — words with similar meanings cluster together in vector space.
+
+**Technical communication:**
+- Structured a formal research-style lab report analyzing deep learning architectures through an interdisciplinary lens (linguistics + neural networks).
+- Designed and delivered a presentation that explains sequence modeling and attention to a non-specialist audience using the *Arrival* film as a conceptual framework.
 
 ---
 

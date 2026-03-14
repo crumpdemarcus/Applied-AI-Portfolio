@@ -64,12 +64,31 @@ Neural-Network-Squad/
 └── LICENSE
 ```
 
-## Learning Outcomes
+## What I Learned (Deep Learning Concepts)
 
-- Gained deeper understanding of neural network fundamentals by designing explanations for each concept
-- Developed skills in interactive front-end development without framework dependencies
-- Practiced designing accessible UX for complex technical content
-- Created original visual assets and learned to communicate AI concepts through illustration and storytelling
+**How a single neuron computes:**
+- A neuron takes multiple inputs, multiplies each by a **weight** (which controls how important that input is), sums them, adds a **bias** (a constant offset that shifts the activation threshold), and passes the result through an **activation function**: `output = activation(Σ(wᵢ · xᵢ) + b)`. I built interactive sliders that let users adjust weight and bias values and watch the output change in real time.
+
+**Weights:**
+- Weights are learnable parameters that scale input signals. A weight of 2.0 doubles the input's influence; a weight of 0.5 halves it; a negative weight inverts the signal. During training, backpropagation adjusts weights to minimize the loss function. The network "learns" by finding the right weight values.
+
+**Biases:**
+- Bias is an additive constant that shifts the activation function's threshold. Without bias, a neuron with all-zero inputs always outputs zero regardless of weights. Bias gives the network flexibility to activate even when inputs are weak — like giving a neuron a "head start."
+
+**Activation functions — why they matter:**
+- Without activation functions, stacking layers of `w·x + b` collapses into a single linear transformation. Activation functions introduce **non-linearity**, which is what allows neural networks to learn complex, curved decision boundaries instead of only straight lines.
+- **ReLU** `f(x) = max(0, x)` — Passes positive values unchanged, blocks negatives. Fast to compute, avoids vanishing gradients for positive inputs. Most common in hidden layers.
+- **Sigmoid** `σ(x) = 1/(1+e^(-x))` — Squashes output to (0, 1). Useful for binary classification where the output represents a probability. Suffers from vanishing gradients for very large/small inputs.
+- **Tanh** `tanh(x)` — Outputs between -1 and +1, centered at zero. Better gradient flow than sigmoid because outputs are zero-centered, which helps in hidden layers.
+
+**Forward propagation:**
+- Data flows through the network layer by layer: `Input → (× Weights) → (+ Bias) → Activation → next layer → ... → Output`. This is the "forward pass." During training, the output is compared to the true label using a loss function, and gradients flow backward (backpropagation) to update weights.
+
+**Deep learning = many layers of neurons:**
+- A single neuron can only learn simple patterns. When millions of neurons are stacked in layers — each transforming and passing signals forward — the network can learn hierarchical features: edges → textures → parts → objects. This depth is why it's called "deep" learning.
+
+**Web development skills:**
+- Built a fully interactive educational comic in pure HTML/CSS/JS with zero dependencies — no Node.js, no build step, no npm. Designed character-driven pedagogy, responsive layouts, and live interactive demos using DOM manipulation and event listeners.
 
 ## License
 
