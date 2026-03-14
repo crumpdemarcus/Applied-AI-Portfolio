@@ -1,8 +1,8 @@
 # DeMarcus Crump - Applied AI Portfolio
 
-[![GitHub](https://img.shields.io/badge/GitHub-DeMarcusCrump-blue?logo=github)](https://github.com/DeMarcusCrump)
+[![GitHub](https://img.shields.io/badge/GitHub-dcthedeveloper-blue?logo=github)](https://github.com/dcthedeveloper)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![AI/ML](https://img.shields.io/badge/AI%2FML-Applied%20Projects-green.svg)](https://github.com/DeMarcusCrump)
+[![AI/ML](https://img.shields.io/badge/AI%2FML-Applied%20Projects-green.svg)](https://github.com/dcthedeveloper)
 
 ## About Me
 
@@ -165,8 +165,7 @@ Hands-on image processing, object detection, and visual pattern recognition usin
 #### [Computer Vision Lab Notebooks](./ITAI-1378-Computer-Vision/)
 Image classification, feature detection, and deep learning model implementations:
 
-- **L04** — Image classification and feature detection
-- **L04 (Extended)** — Advanced computer vision techniques
+- **L04** — Image classification, custom CNNs, transfer learning (VGG, ResNet), data augmentation
 
 **Technologies:** Python, OpenCV, TensorFlow, Keras, CNN Architectures, Jupyter Notebooks
 
@@ -196,7 +195,7 @@ DeMarcus-Crump-AI-Portfolio/
 │
 ├── ITAI-1378-Computer-Vision/                   # Computer Vision
 │   ├── Workplace-Safety-PPE-Detection-System/   # YOLOv8 object detection
-│   └── Lab Notebooks (L04, L04 Extended)        # CV labs
+│   └── Lab Notebook (L04)                       # CV lab
 │
 └── Presentation/
     └── Pf_DeMarcusCrump_ITAI2376.pdf           # Portfolio presentation
@@ -228,7 +227,7 @@ DeMarcus-Crump-AI-Portfolio/
 
 **Email:** crumpdemarcus@gmail.com  
 **LinkedIn:** https://www.linkedin.com/in/demarcus-crump/  
-**GitHub:** [@DeMarcusCrump](https://github.com/DeMarcusCrump)
+**GitHub:** [@dcthedeveloper](https://github.com/dcthedeveloper)
 
 ---
 

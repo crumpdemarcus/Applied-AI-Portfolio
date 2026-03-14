@@ -107,7 +107,6 @@ Asthma-Allergy-Co-Pilot/
 │   │   ├── pages/            # Application pages
 │   │   └── api/              # API integration
 │   └── package.json
-├── .emergent/                 # Emergent AI configuration
 ├── AI Asthma & Allergy Research Brief.pdf
 ├── AI-Driven Asthma and Allergy Co-Pilot_ Strategic Research Report.pdf
 ├── AeroSense-AI-Powered-Respiratory-Health-Companion.pdf

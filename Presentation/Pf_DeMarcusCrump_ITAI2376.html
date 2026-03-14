@@ -1,280 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>DeMarcus Crump — Applied AI Portfolio</title>
-  <style>
-    @page {
-      size: letter landscape;
-      margin: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeMarcus Crump - Applied AI Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.95);
+            --border: rgba(255, 255, 255, 0.1);
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            --text-main: #e5e5e5;
+            --text-muted: #a3a3a3;
+        }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #000;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-      width: 11in;
-      height: 8.5in;
-      padding: 0.5in 0.6in;
-      background: white;
-      color: #1a1a1a;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: auto 1fr auto;
-      gap: 0.25in;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
+        #resume-sheet {
+            width: 210mm;
+            height: 297mm;
+            background: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            padding: 24px;
+            display: grid;
+            grid-template-rows: auto auto 1fr auto;
+            gap: 16px;
+            box-sizing: border-box;
+            border: 1px solid #222;
+        }
 
-    /* ── Header ── */
-    .header {
-      grid-column: 1 / -1;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      border-bottom: 3px solid #1a1a1a;
-      padding-bottom: 8px;
-    }
-    .header h1 {
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-    .header .subtitle {
-      font-size: 13px;
-      color: #555;
-      text-align: right;
-      line-height: 1.4;
-    }
+        h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; margin: 0; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-    /* ── Columns ── */
-    .col { display: flex; flex-direction: column; gap: 10px; }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            height: 100%;
+        }
 
-    .section-title {
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #fff;
-      background: #1a1a1a;
-      padding: 4px 8px;
-      border-radius: 3px;
-    }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
 
-    /* ── Project Cards ── */
-    .project {
-      border-left: 3px solid #333;
-      padding-left: 8px;
-      margin-bottom: 2px;
-    }
-    .project h3 {
-      font-size: 11.5px;
-      font-weight: 700;
-      margin-bottom: 1px;
-    }
-    .project .tech {
-      font-size: 9px;
-      color: #666;
-      margin-bottom: 2px;
-    }
-    .project p {
-      font-size: 9.5px;
-      line-height: 1.35;
-      color: #333;
-    }
+        .card-header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    /* ── Skills ── */
-    .skill-row {
-      display: flex;
-      gap: 4px;
-      align-items: baseline;
-      margin-bottom: 3px;
-    }
-    .skill-label {
-      font-size: 9px;
-      font-weight: 700;
-      min-width: 60px;
-      color: #1a1a1a;
-    }
-    .skill-value {
-      font-size: 9px;
-      color: #444;
-      line-height: 1.3;
-    }
+        .project-item { margin-bottom: 8px; }
+        .project-item:last-child { margin-bottom: 0; }
+        .project-title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .project-desc {
+            font-size: 0.58rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+            margin-top: 2px;
+        }
+        .tech-tag {
+            font-size: 0.5rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            opacity: 0.8;
+        }
 
-    /* ── DL Concepts ── */
-    .concept-block {
-      margin-bottom: 4px;
-    }
-    .concept-block h4 {
-      font-size: 10px;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 1px;
-    }
-    .concept-block p {
-      font-size: 9px;
-      color: #444;
-      line-height: 1.35;
-    }
+        .skill-pill {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.55rem;
+            white-space: nowrap;
+        }
 
-    /* ── Footer ── */
-    .footer {
-      grid-column: 1 / -1;
-      border-top: 2px solid #1a1a1a;
-      padding-top: 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 10px;
-    }
-    .footer a {
-      color: #1a1a1a;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .footer .contact {
-      display: flex;
-      gap: 20px;
-    }
-    .footer .contact span {
-      color: #555;
-    }
-  </style>
+        .header-link {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s;
+        }
+        .header-link:hover { color: var(--accent); }
+
+        @media print {
+            body { background: none; padding: 0; margin: 0; }
+            #resume-sheet {
+                width: 100%;
+                height: 100vh;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+            }
+            .no-print { display: none !important; }
+            * { -webkit-print-color-adjust: exact !important; }
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+            transition: transform 0.1s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+    </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <div class="header">
-    <h1>DeMarcus Crump</h1>
-    <div class="subtitle">
-      Applied AI Portfolio<br>
-      Artificial Intelligence, A.A.S. — Houston City College
-    </div>
-  </div>
-
-  <!-- COLUMN 1: Featured Projects -->
-  <div class="col">
-    <div class="section-title">Featured Projects</div>
-
-    <div class="project">
-      <h3>ConvoShrimp — CNN Visualizer</h3>
-      <div class="tech">React 19 · Vite · TailwindCSS · Framer Motion · PyTorch</div>
-      <p>Interactive app mapping CNN architecture to mantis shrimp biology. Animated walkthrough of convolution, pooling, feature extraction, and classification with embedded PyTorch code.</p>
+    <!-- Controls -->
+    <div class="controls no-print">
+        <button class="btn" onclick="window.print()">Save as PDF</button>
+        <button class="btn" style="background:#333;" onclick="downloadHTML()">Download HTML</button>
     </div>
 
-    <div class="project">
-      <h3>Neural Network Squad — Web Comic</h3>
-      <div class="tech">HTML5 · CSS3 · JavaScript · Zero Dependencies</div>
-      <p>Interactive comic teaching weights, biases, and activation functions (ReLU, Sigmoid, Tanh) through illustrated characters and live slider demos.</p>
+    <!-- The Single Page Document -->
+    <div id="resume-sheet">
+
+        <!-- 1. Header -->
+        <header style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
+            <div>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                    <h1 style="font-size: 2.25rem; color: white; letter-spacing: -0.05em;">DeMarcus Crump</h1>
+                    <span style="padding: 4px 8px; border-radius: 4px; background: rgb(49 46 129 / 0.5); color: rgb(165 180 252); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.025em; text-transform: uppercase; border: 1px solid rgb(99 102 241 / 0.3);">Open to Work</span>
+                </div>
+                <h2 style="font-size: 1.125rem; color: #9ca3af; font-weight: 400;">Artificial Intelligence, A.A.S. <span style="color: #4b5563; margin: 0 0.5rem;">|</span> Houston City College</h2>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px; text-align: right;">
+                <a href="mailto:crumpdemarcus@gmail.com" class="header-link">crumpdemarcus@gmail.com</a>
+                <a href="https://linkedin.com/in/demarcus-crump" class="header-link">linkedin.com/in/demarcus-crump</a>
+                <a href="https://github.com/dcthedeveloper/The-Neural-Network-Squad" class="header-link" style="color: #818cf8;">github.com/dcthedeveloper/The-Neural-Network-Squad</a>
+            </div>
+        </header>
+
+        <!-- 2. Intro -->
+        <section style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: center;">
+            <div style="grid-column: span 3;">
+                <p style="font-size: 0.65rem; color: #9ca3af; line-height: 1.625; text-align: justify;">
+                    <strong style="color: white;">Portfolio Overview:</strong> A comprehensive collection of production-quality AI/ML projects across four course areas, showcasing proficiency in <span style="color: #818cf8;">Deep Learning, Generative AI, Computer Vision, and NLP</span>. Demonstrated ability to integrate LLMs (Llama 3.3, Gemini 2.5), build CNN visualizations, implement diffusion models, and deploy custom trained models for real-world utility.
+                </p>
+            </div>
+            <div style="grid-column: span 1; text-align: right;">
+                <div style="display: flex; justify-content: flex-end; gap: 16px;">
+                    <div style="text-align: center;">
+                        <div class="font-mono" style="font-size: 1.25rem; font-weight: 800; color: white;">12</div>
+                        <div style="font-size: 0.5rem; color: #6b7280; text-transform: uppercase;">Projects</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="font-mono" style="font-size: 1.25rem; font-weight: 800; color: white;">4</div>
+                        <div style="font-size: 0.5rem; color: #6b7280; text-transform: uppercase;">Courses</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="font-mono" style="font-size: 1.25rem; font-weight: 800; color: white;">15k+</div>
+                        <div style="font-size: 0.5rem; color: #6b7280; text-transform: uppercase;">Lines</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Main Content: Four Pillars -->
+        <div class="bento-grid">
+
+            <!-- Column 1: Deep Learning -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-size: 0.75rem; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.05em;">01 // Deep Learning</h3>
+                    <span class="font-mono" style="font-size: 0.55rem; color: #6b7280;">ITAI-2376</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; height: 100%; justify-content: space-between;">
+                    <div class="project-item">
+                        <div class="project-title">ConvoShrimp <span style="margin-left: auto; font-size: 0.55rem; color: #818cf8; font-family: 'JetBrains Mono', monospace;">CNN Viz</span></div>
+                        <p class="project-desc">Interactive React app mapping CNN architecture to mantis shrimp biology. Animated walkthrough of convolution, pooling, and classification with embedded PyTorch code.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">React 19 · Vite · TailwindCSS · Framer</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Neural Network Squad <span style="margin-left: auto; font-size: 0.55rem; color: #818cf8; font-family: 'JetBrains Mono', monospace;">Education</span></div>
+                        <p class="project-desc">Interactive web comic teaching weights, biases, and activation functions (ReLU, Sigmoid, Tanh) through illustrated characters and live slider demos.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">HTML5 · CSS3 · JS · Zero Deps</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Arrival <span style="margin-left: auto; font-size: 0.55rem; color: #818cf8; font-family: 'JetBrains Mono', monospace;">Seq2Seq</span></div>
+                        <p class="project-desc">Encoder-decoder NLP experience exploring attention mechanisms and neural language representation inspired by the film.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">React · Framer Motion · i18n</div>
+                    </div>
+                    <div style="margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <p style="font-size: 0.5rem; color: #6b7280; font-style: italic;">"Built CNN visualizations and diffusion model labs from scratch in PyTorch."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 2: AI Applications -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-size: 0.75rem; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.05em;">02 // AI Applications</h3>
+                    <span class="font-mono" style="font-size: 0.55rem; color: #6b7280;">ITAI-2372</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; height: 100%; justify-content: space-between;">
+                    <div class="project-item">
+                        <div class="project-title">Aura Intelligence <span style="margin-left: auto; font-size: 0.55rem; color: #818cf8; font-family: 'JetBrains Mono', monospace;">Marketing GenAI</span></div>
+                        <p class="project-desc">Dual-mode platform using Groq's Llama 3.3 70B. Storyteller Mode generates luxury copy; Curator Mode acts as a search-enabled assistant.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">Flask · Groq API · TailwindCSS</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">AgentHub <span style="margin-left: auto; font-size: 0.55rem; color: #818cf8; font-family: 'JetBrains Mono', monospace;">Web3 + AI</span></div>
+                        <p class="project-desc">Decentralized freelance marketplace. Uses AI for job matching and Smart Contracts for secure transaction settlement.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">Python · Blockchain · Matching Algo</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">AeroSense <span style="margin-left: auto; font-size: 0.55rem; color: #818cf8; font-family: 'JetBrains Mono', monospace;">HealthTech</span></div>
+                        <p class="project-desc">Respiratory health companion using Gemini 2.5 Pro for symptom interpretation and ML for environmental risk forecasting.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">FastAPI · React · MongoDB · Gemini</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 3: NLP -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-size: 0.75rem; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.05em;">03 // NLP</h3>
+                    <span class="font-mono" style="font-size: 0.55rem; color: #6b7280;">ITAI-2373</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; height: 100%; justify-content: space-between;">
+                    <div class="project-item">
+                        <div class="project-title">NuVision News <span style="margin-left: auto; font-size: 0.55rem; color: #818cf8; font-family: 'JetBrains Mono', monospace;">Semantic</span></div>
+                        <p class="project-desc">Full-stack news analyzer featuring semantic clustering, bias detection, and knowledge graph generation.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">React · TS · Hugging Face · Node.js</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Text Preprocessing Lab</div>
+                        <p class="project-desc">Engineered pipelines transforming raw text to features via TF-IDF, tokenization, stemming, and lemmatization.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">NLTK · Pandas · Scikit-learn</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Sentiment Analysis</div>
+                        <p class="project-desc">Built binary and multi-class classification models. Focused on evaluation metrics and model tuning.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">ML · Classification</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Advanced NER</div>
+                        <p class="project-desc">Named Entity Recognition using spaCy for extraction of complex entities from unstructured text.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">spaCy · Python · Info Extraction</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 4: Computer Vision -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-size: 0.75rem; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.05em;">04 // Computer Vision</h3>
+                    <span class="font-mono" style="font-size: 0.55rem; color: #6b7280;">ITAI-1378</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px; height: 100%; justify-content: space-between;">
+                    <div class="project-item">
+                        <div class="project-title">Workplace Safety PPE <span style="margin-left: auto; font-size: 0.55rem; color: #818cf8; font-family: 'JetBrains Mono', monospace;">YOLOv8</span></div>
+                        <p class="project-desc">Real-time object detection system for 10 classes of PPE. Custom trained YOLOv8 model with comprehensive metric evaluation.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">PyTorch · OpenCV · Object Detection</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">CV Fundamentals</div>
+                        <p class="project-desc">CNN architectures built from scratch alongside Transfer Learning implementations (VGG, ResNet) achieving 85%+ accuracy.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">TensorFlow · Keras · CNNs</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Advanced Architectures</div>
+                        <p class="project-desc">Deep CNN optimization, hyperparameter tuning, and rigorous error analysis for iterative model improvement.</p>
+                        <div class="tech-tag" style="margin-top: 2px;">Fine-tuning · Optimization</div>
+                    </div>
+                    <div style="margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <p style="font-size: 0.5rem; color: #6b7280; font-style: italic;">"Leveraging vision transformers and CNNs for actionable insights."</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 4. Skills Footer -->
+        <div class="card" style="padding: 10px;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+                <span style="font-size: 0.6rem; font-weight: 700; color: white; text-transform: uppercase; margin-right: 8px;">Tech Stack:</span>
+
+                <!-- Models (indigo accent) -->
+                <span class="skill-pill" style="color: rgb(165 180 252); border-color: rgb(99 102 241 / 0.3);">Llama 3.3</span>
+                <span class="skill-pill" style="color: rgb(165 180 252); border-color: rgb(99 102 241 / 0.3);">Gemini 2.5 Pro</span>
+                <span class="skill-pill" style="color: rgb(165 180 252); border-color: rgb(99 102 241 / 0.3);">YOLOv8</span>
+                <span class="skill-pill" style="color: rgb(165 180 252); border-color: rgb(99 102 241 / 0.3);">BERT/BART</span>
+
+                <!-- Core -->
+                <span class="skill-pill">Python</span>
+                <span class="skill-pill">TypeScript</span>
+                <span class="skill-pill">PyTorch</span>
+                <span class="skill-pill">TensorFlow</span>
+                <span class="skill-pill">Scikit-learn</span>
+                <span class="skill-pill">Pandas</span>
+
+                <!-- Web -->
+                <span class="skill-pill">React</span>
+                <span class="skill-pill">FastAPI</span>
+                <span class="skill-pill">Flask</span>
+                <span class="skill-pill">MongoDB</span>
+                <span class="skill-pill">TailwindCSS</span>
+
+                <!-- Tools -->
+                <span class="skill-pill">Git</span>
+                <span class="skill-pill">Jupyter</span>
+                <span class="skill-pill">Framer Motion</span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <div style="font-size: 0.6rem; color: #6b7280;">
+                    Repository Status: <span style="color: rgb(74 222 128);">● Public</span>
+                </div>
+                <div style="font-size: 0.6rem; color: #6b7280;">
+                    Last Updated: 2025
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="project">
-      <h3>Aura Intelligence — AI Marketing</h3>
-      <div class="tech">Python · Flask · Groq API (Llama 3.3) · SSE</div>
-      <p>Multi-agent LLM platform generating luxury fragrance marketing content with Storyteller, Curator, and Science modes.</p>
-    </div>
-
-    <div class="project">
-      <h3>AgentHub — Blockchain Marketplace</h3>
-      <div class="tech">Python · Blockchain · SHA-256 · ML Validator</div>
-      <p>Autonomous AI agent marketplace with custom blockchain, smart contract escrow, and 92% accuracy ML quality validator.</p>
-    </div>
-
-    <div class="project">
-      <h3>NuVision News — NLP Analysis</h3>
-      <div class="tech">TypeScript · React · Node.js · NLP APIs</div>
-      <p>Full-stack news platform with real-time sentiment analysis, bias detection, topic clustering, and conversational search.</p>
-    </div>
-  </div>
-
-  <!-- COLUMN 2: What I Learned in Deep Learning -->
-  <div class="col">
-    <div class="section-title">What I Learned — Deep Learning</div>
-
-    <div class="concept-block">
-      <h4>Neural Network Fundamentals</h4>
-      <p>How neurons compute output = activation(W·x + b). Weights scale input importance, biases shift activation thresholds. Forward propagation passes data through layers; backpropagation computes gradients to update weights via loss functions like CrossEntropyLoss.</p>
-    </div>
-
-    <div class="concept-block">
-      <h4>Activation Functions</h4>
-      <p>ReLU: f(x) = max(0, x) — sparse, fast, solves vanishing gradients. Sigmoid: squashes to (0,1) for probability. Tanh: centered at zero for balanced gradients. Without activation, stacked layers collapse to one linear transformation.</p>
-    </div>
-
-    <div class="concept-block">
-      <h4>CNN Architecture</h4>
-      <p>Convolution (3×3 kernels → feature maps) → Max Pooling (spatial reduction) → Batch Normalization (training stability) → Dropout (regularization) → Flatten → Dense Layers → Softmax (class probabilities). Studied evolution: LeNet → AlexNet → VGGNet → GoogLeNet → ResNet → EfficientNet.</p>
-    </div>
-
-    <div class="concept-block">
-      <h4>Generative Models — Diffusion</h4>
-      <p>Denoising Diffusion Probabilistic Models (DDPMs): forward process adds Gaussian noise over T steps; reverse process trains a U-Net to denoise one step at a time, generating images from pure random noise. Noise scheduling controls training stability.</p>
-    </div>
-
-    <div class="concept-block">
-      <h4>Sequence Models & Attention</h4>
-      <p>Encoder-decoder architectures for variable-length sequences. Attention mechanisms let the decoder focus on relevant encoder positions instead of compressing input into a fixed vector — the foundation of Transformers.</p>
-    </div>
-
-    <div class="concept-block">
-      <h4>PyTorch Implementation</h4>
-      <p>Built CNN class (nn.Module), training loops with DataLoader, data augmentation (RandomCrop, HorizontalFlip), Adam optimizer + StepLR scheduler, GPU acceleration, trained on CIFAR-10 (60K images, 10 classes).</p>
-    </div>
-  </div>
-
-  <!-- COLUMN 3: Skills & Courses -->
-  <div class="col">
-    <div class="section-title">Technical Skills</div>
-
-    <div class="skill-row"><span class="skill-label">Languages</span><span class="skill-value">Python, JavaScript, TypeScript</span></div>
-    <div class="skill-row"><span class="skill-label">AI / ML</span><span class="skill-value">PyTorch, TensorFlow, Keras, Scikit-learn</span></div>
-    <div class="skill-row"><span class="skill-label">NLP</span><span class="skill-value">NLTK, spaCy, Sentiment Analysis, NER, TF-IDF</span></div>
-    <div class="skill-row"><span class="skill-label">LLMs</span><span class="skill-value">Groq API, OpenAI API, Prompt Engineering</span></div>
-    <div class="skill-row"><span class="skill-label">Deep Learning</span><span class="skill-value">CNNs, Diffusion Models, Attention, Backprop</span></div>
-    <div class="skill-row"><span class="skill-label">Frontend</span><span class="skill-value">React, Vite, TailwindCSS, Framer Motion</span></div>
-    <div class="skill-row"><span class="skill-label">Backend</span><span class="skill-value">Flask, Node.js, REST APIs, SSE Streaming</span></div>
-    <div class="skill-row"><span class="skill-label">Other</span><span class="skill-value">Git, Blockchain, Jupyter, Google Colab</span></div>
-
-    <div style="margin-top: 6px;">
-      <div class="section-title">Coursework</div>
-    </div>
-
-    <div class="concept-block">
-      <h4>ITAI-2376 · Deep Learning</h4>
-      <p>CNN visualization (ConvoShrimp), neural network fundamentals (Neural Network Squad), diffusion models lab, sequence models (Arrival)</p>
-    </div>
-    <div class="concept-block">
-      <h4>ITAI-2372 · AI Applications</h4>
-      <p>LLM integration, multi-agent systems, blockchain infrastructure, health analytics</p>
-    </div>
-    <div class="concept-block">
-      <h4>ITAI-2373 · Natural Language Processing</h4>
-      <p>Text preprocessing, TF-IDF, sentiment analysis, NER, production news platform</p>
-    </div>
-    <div class="concept-block">
-      <h4>ITAI-1378 · Computer Vision</h4>
-      <p>YOLOv8 object detection, image classification, PPE safety detection system</p>
-    </div>
-
-    <div style="margin-top: 6px;">
-      <div class="section-title">What I Bring</div>
-    </div>
-    <p style="font-size: 9.5px; color: #333; line-height: 1.4;">
-      Full-stack AI development — frontend, backend, and ML in one developer. Every project is buildable, documented, and production-ready. Strong technical communication: built interactive tools that teach CNNs and neural networks to non-technical audiences.
-    </p>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    <div class="contact">
-      <span>📧 crumpdemarcus@gmail.com</span>
-      <span>🔗 <a href="https://www.linkedin.com/in/demarcus-crump/">linkedin.com/in/demarcus-crump</a></span>
-    </div>
-    <a href="https://github.com/dcthedeveloper/DeMarcus-Crump-AI-Portfolio" style="font-size: 11px;">
-      github.com/dcthedeveloper/DeMarcus-Crump-AI-Portfolio
-    </a>
-  </div>
-
+    <script>
+        function downloadHTML() {
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Pf_DeMarcusCrump_ITAI2376.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
 </body>
 </html>

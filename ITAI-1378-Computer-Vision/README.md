@@ -37,18 +37,6 @@ Complete CNN workflow — image preprocessing, data augmentation, custom CNN arc
 
 ---
 
-#### [L04: Advanced Computer Vision (Extended)](./L04_DeMarcusCrump_ITAI_1378%20(1).ipynb)
-
-Advanced CNN architectures, hyperparameter optimization (grid search, learning rate scheduling), model ensembles, error analysis, and cross-validation on 10+ class datasets. Achieved 85%+ accuracy on multi-class image classification.
-
-| | |
-|---|---|
-| **Tools** | TensorFlow, Keras, Scikit-learn, Pandas, NumPy, Matplotlib |
-| **Techniques** | Residual connections, learning rate scheduling, early stopping, model checkpointing, K-fold validation |
-| **Outputs** | Architecture comparisons, hyperparameter tuning results, error analysis, performance benchmarks |
-
----
-
 ## Skills Demonstrated
 
 | Category | Details |
@@ -72,7 +60,6 @@ ITAI-1378-Computer-Vision/
 │   ├── results/
 │   └── README.md
 ├── L04_DeMarcusCrump_ITAI_1378.ipynb       # Core CV lab
-├── L04_DeMarcusCrump_ITAI_1378 (1).ipynb   # Advanced CV lab
 └── results/
 ```
 
