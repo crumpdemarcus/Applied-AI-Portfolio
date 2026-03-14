@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Neural Network Squad - Deep Learning Comic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Nunito:wght@400;700;900&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --sponge-yellow: #FFF04B;
+      --patrick-pink: #FFB6C1;
+      --ocean-blue: #00CED1;
+      --kelp-green: #7CFC00;
+      --sandy-brown: #F4A460;
+      --squid-teal: #40E0D0;
+      --krabby-red: #FF6B6B;
+      --plankton-green: #32CD32;
+      --gary-purple: #9370DB;
+      --sky-blue: #87CEEB;
+      --sand-yellow: #F0E68C;
+      --deep-blue: #1E90FF;
+      --bubble-white: #F0FFFF;
+      --outline-black: #2D2D2D;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(180deg, var(--sky-blue) 0%, var(--ocean-blue) 50%, var(--deep-blue) 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .comic-wrapper { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .comic-book {
+      background: var(--sand-yellow);
+      border: 6px solid var(--outline-black);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 12px 12px 0 var(--outline-black), 0 0 40px rgba(0,0,0,0.3);
+    }
+
+    .comic-page { display: none; min-height: 650px; position: relative; animation: pageFlip 0.4s ease; }
+    .comic-page.active { display: block; }
+
+    @keyframes pageFlip { from { opacity: 0; transform: rotateY(-10deg); } to { opacity: 1; transform: rotateY(0); } }
+
+    .narrator-card {
+      background: var(--outline-black);
+      color: var(--bubble-white);
+      font-family: 'Titan One', cursive;
+      padding: 15px 30px;
+      text-align: center;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 4px solid var(--sponge-yellow);
+    }
+
+    .panel-grid { display: grid; gap: 8px; padding: 15px; background: var(--bubble-white); }
+    .grid-full { grid-template-columns: 1fr; }
+    .grid-half { grid-template-columns: 1fr 1fr; }
+    .grid-thirds { grid-template-columns: 1fr 1fr 1fr; }
+    .grid-2-1 { grid-template-columns: 2fr 1fr; }
+    .grid-1-2 { grid-template-columns: 1fr 2fr; }
+
+    .panel {
+      background: white;
+      border: 4px solid var(--outline-black);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 4px 4px 0 var(--outline-black);
+      display: flex;
+      flex-direction: column;
+    }
+    .panel.span-2 { grid-column: span 2; }
+    .panel.span-3 { grid-column: span 3; }
+    .panel.tall { grid-row: span 2; }
+
+    /* --- UPDATED: White Background for Placeholders --- */
+    .image-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #FFFFFF; /* CHANGED TO WHITE */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      text-align: center;
+      border-bottom: 3px solid var(--outline-black);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .image-placeholder:hover {
+      box-shadow: inset 0 0 0 4px rgba(0, 0, 0, 0.1); /* Changed to dark subtle shadow since bg is white */
+    }
+    
+    .image-placeholder:hover::after {
+      content: '📸 Click to Upload | 🖱️ Scroll/Drag to Resize';
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .panel-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: auto;
+    }
+
+    .image-placeholder img { 
+      position: absolute; 
+      top: 50%; 
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin: center;
+      min-width: 100%; 
+      min-height: 100%; 
+      width: auto;
+      height: auto;
+      max-width: none; 
+      z-index: 10;
+      cursor: grab;
+      user-select: none;
+    }
+    .image-placeholder img:active {
+      cursor: grabbing;
+    }
+
+    .image-placeholder.square { aspect-ratio: 1 / 1; }
+    .image-placeholder.portrait { aspect-ratio: 3 / 4; }
+    .image-placeholder.wide { aspect-ratio: 21 / 9; }
+    
+    /* UPDATED: Backgrounds removed (white inherited) */
+    .image-placeholder.character { background: #FFFFFF; }
+    .image-placeholder.action { background: #FFFFFF; }
+    .image-placeholder.success { background: #FFFFFF; }
+    .image-placeholder.problem { background: #FFFFFF; }
+    
+    .placeholder-label {
+      background: rgba(0,0,0,0.75);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      border: 2px dashed rgba(255,255,255,0.5);
+      z-index: 2;
+      pointer-events: none; 
+    }
+
+    /* UPDATED: Text color changed to dark grey for visibility on white */
+    .placeholder-desc { 
+      color: #666; /* CHANGED TO DARK GREY */
+      font-size: 0.7rem; 
+      margin-top: 8px; 
+      font-style: italic; 
+      max-width: 90%; 
+      z-index: 2; 
+      pointer-events: none;
+    }
+
+    .panel-content { padding: 15px; flex-shrink: 0; }
+
+    /* --- GRAPH STYLES --- */
+    .graph-svg { width: 100%; height: 100%; overflow: visible; }
+    .graph-axis { stroke: var(--outline-black); stroke-width: 3; stroke-linecap: round; }
+    .graph-grid { stroke: rgba(0,0,0,0.1); stroke-width: 2; stroke-dasharray: 6,6; }
+    .graph-curve { fill: none; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.2)); }
+    .graph-label-text { font-family: 'Titan One', cursive; font-size: 14px; fill: var(--outline-black); }
+
+    .speech-bubble {
+      background: white;
+      border: 3px solid var(--outline-black);
+      border-radius: 20px;
+      padding: 12px 16px;
+      margin: 10px 0;
+      position: relative;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      box-shadow: 3px 3px 0 var(--outline-black);
+    }
+    .speech-bubble::after { content: ''; position: absolute; bottom: -15px; left: 25px; border-width: 15px 10px 0; border-style: solid; border-color: var(--outline-black) transparent transparent; }
+    .speech-bubble::before { content: ''; position: absolute; bottom: -10px; left: 27px; border-width: 12px 8px 0; border-style: solid; border-color: white transparent transparent; z-index: 1; }
+    .speech-bubble.right::after { left: auto; right: 25px; }
+    .speech-bubble.right::before { left: auto; right: 27px; }
+    .speech-bubble.no-tail::after, .speech-bubble.no-tail::before { display: none; }
+
+    .speaker-name { font-family: 'Titan One', cursive; font-size: 0.8rem; color: var(--deep-blue); margin-bottom: 5px; display: block; }
+
+    .bubble-wally { background: linear-gradient(135deg, #FFF9E6 0%, #FFE4B5 100%); border-color: var(--sandy-brown); }
+    .bubble-wally .speaker-name { color: var(--sandy-brown); }
+    .bubble-bella { background: linear-gradient(135deg, #FFF0F5 0%, #FFB6C1 100%); border-color: var(--krabby-red); }
+    .bubble-bella .speaker-name { color: var(--krabby-red); }
+    .bubble-siggy { background: linear-gradient(135deg, #F0FFF0 0%, #98FB98 100%); border-color: var(--plankton-green); }
+    .bubble-siggy .speaker-name { color: var(--plankton-green); }
+    .bubble-tanya { background: linear-gradient(135deg, #F5F0FF 0%, #DDA0DD 100%); border-color: var(--gary-purple); }
+    .bubble-tanya .speaker-name { color: var(--gary-purple); }
+    .bubble-rex { background: linear-gradient(135deg, #FFF5EE 0%, #FFA07A 100%); border-color: #FF6347; }
+    .bubble-rex .speaker-name { color: #FF6347; }
+
+    .comic-title { font-family: 'Titan One', cursive; font-size: 3.5rem; color: var(--sponge-yellow); text-shadow: 4px 4px 0 var(--outline-black), -2px -2px 0 var(--outline-black), 2px -2px 0 var(--outline-black), -2px 2px 0 var(--outline-black); text-align: center; line-height: 1.1; }
+    .comic-subtitle { font-family: 'Titan One', cursive; font-size: 1.5rem; color: var(--bubble-white); text-shadow: 2px 2px 0 var(--outline-black); text-align: center; margin-top: 10px; }
+    .section-title { font-family: 'Titan One', cursive; font-size: 1.8rem; color: var(--outline-black); text-align: center; margin-bottom: 10px; text-shadow: 2px 2px 0 var(--sponge-yellow); }
+
+    .info-box { background: var(--sponge-yellow); border: 4px solid var(--outline-black); border-radius: 12px; padding: 15px; margin: 10px 0; box-shadow: 4px 4px 0 var(--outline-black); }
+    .info-box.power { background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--squid-teal) 100%); color: white; }
+    .info-box.formula { background: var(--outline-black); color: var(--sponge-yellow); font-family: 'Titan One', cursive; font-size: 1.3rem; text-align: center; }
+    .info-box.success { background: linear-gradient(135deg, var(--kelp-green) 0%, var(--plankton-green) 100%); color: white; }
+    .info-box.danger { background: linear-gradient(135deg, var(--krabby-red) 0%, #ff4444 100%); color: white; }
+    .info-box h3 { font-family: 'Titan One', cursive; font-size: 1.2rem; margin-bottom: 8px; }
+
+    .definition-box { background: white; border: 4px solid var(--deep-blue); border-radius: 12px; padding: 15px; margin: 10px 0; box-shadow: 4px 4px 0 var(--deep-blue); }
+    .definition-box .term { font-family: 'Titan One', cursive; font-size: 1rem; color: var(--deep-blue); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+    .definition-box .meaning { font-size: 0.95rem; line-height: 1.5; color: var(--outline-black); }
+    .definition-box .simple { background: var(--sponge-yellow); padding: 8px 12px; border-radius: 8px; margin-top: 8px; font-weight: bold; font-size: 0.9rem; }
+
+    .character-role { background: var(--outline-black); color: var(--sponge-yellow); font-size: 0.7rem; font-weight: bold; padding: 4px 12px; border-radius: 20px; display: inline-block; text-transform: uppercase; letter-spacing: 1px; }
+
+    .sfx { font-family: 'Titan One', cursive; font-size: 2rem; color: var(--krabby-red); text-shadow: 3px 3px 0 var(--sponge-yellow), -1px -1px 0 var(--outline-black), 1px -1px 0 var(--outline-black), -1px 1px 0 var(--outline-black), 1px 1px 0 var(--outline-black); transform: rotate(-5deg); display: inline-block; }
+
+    .cover-page { background: linear-gradient(180deg, var(--sky-blue) 0%, var(--ocean-blue) 50%, var(--deep-blue) 100%); min-height: 650px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; position: relative; overflow: hidden; }
+    .cover-page::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(0deg, var(--sand-yellow) 0%, transparent 100%); }
+
+    /* UPDATED: Cover image slot also white */
+    .cover-image-slot { width: 100%; max-width: 550px; aspect-ratio: 16 / 9; background: #FFFFFF; border: 5px solid var(--outline-black); border-radius: 15px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 8px 8px 0 var(--outline-black); position: relative; overflow: hidden; }
+    .cover-image-slot img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+
+    .cover-characters { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; position: relative; z-index: 2; }
+    .cover-character { width: 70px; height: 70px; border-radius: 50%; border: 4px solid var(--outline-black); display: flex; align-items: center; justify-content: center; font-size: 0.55rem; font-weight: bold; color: var(--outline-black); box-shadow: 4px 4px 0 var(--outline-black); transition: transform 0.3s ease; }
+    .cover-character:hover { transform: scale(1.1) rotate(5deg); }
+    .cover-character.wally { background: var(--sandy-brown); }
+    .cover-character.bella { background: var(--patrick-pink); }
+    .cover-character.siggy { background: var(--kelp-green); }
+    .cover-character.tanya { background: var(--gary-purple); }
+    .cover-character.rex { background: var(--krabby-red); }
+
+    .start-reading { font-family: 'Titan One', cursive; font-size: 1.3rem; background: var(--sponge-yellow); color: var(--outline-black); border: 4px solid var(--outline-black); padding: 12px 30px; border-radius: 30px; cursor: pointer; margin-top: 15px; box-shadow: 5px 5px 0 var(--outline-black); transition: all 0.2s ease; position: relative; z-index: 2; }
+    .start-reading:hover { transform: translateY(-3px); box-shadow: 7px 7px 0 var(--outline-black); }
+
+    .flow-diagram { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; padding: 15px; background: rgba(255,255,255,0.9); border-radius: 10px; margin: 10px 0; }
+    .flow-step { background: var(--ocean-blue); color: white; padding: 10px 15px; border-radius: 10px; font-family: 'Titan One', cursive; font-size: 0.85rem; border: 3px solid var(--outline-black); box-shadow: 3px 3px 0 var(--outline-black); }
+    .flow-arrow { font-size: 1.5rem; color: var(--outline-black); font-weight: bold; }
+
+    .demo-container { background: var(--bubble-white); border: 4px solid var(--outline-black); border-radius: 15px; padding: 20px; margin: 15px 0; box-shadow: 4px 4px 0 var(--outline-black); }
+    .demo-title { font-family: 'Titan One', cursive; font-size: 1.1rem; color: var(--deep-blue); text-align: center; margin-bottom: 15px; }
+    .demo-slider-row { display: flex; align-items: center; gap: 15px; margin: 10px 0; }
+    .demo-slider-label { font-weight: bold; font-size: 0.9rem; min-width: 80px; }
+    .demo-slider { flex: 1; height: 16px; -webkit-appearance: none; background: var(--sand-yellow); border-radius: 10px; border: 3px solid var(--outline-black); outline: none; }
+    .demo-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; background: var(--ocean-blue); border: 3px solid var(--outline-black); border-radius: 50%; cursor: pointer; box-shadow: 2px 2px 0 var(--outline-black); }
+    .demo-slider::-moz-range-thumb { width: 30px; height: 30px; background: var(--ocean-blue); border: 3px solid var(--outline-black); border-radius: 50%; cursor: pointer; }
+    .demo-slider-value { font-family: 'Titan One', cursive; font-size: 1.2rem; min-width: 50px; text-align: center; }
+    .demo-result { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+    .demo-box { background: white; border: 3px solid var(--outline-black); border-radius: 10px; padding: 10px 15px; text-align: center; box-shadow: 3px 3px 0 var(--outline-black); min-width: 100px; }
+    .demo-box .label { font-size: 0.65rem; font-weight: bold; text-transform: uppercase; color: var(--deep-blue); letter-spacing: 0.5px; }
+    .demo-box .value { font-family: 'Titan One', cursive; font-size: 1.8rem; color: var(--outline-black); }
+    .demo-box.result { background: var(--sponge-yellow); }
+
+    .nav-bar { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; background: var(--sponge-yellow); border-top: 4px solid var(--outline-black); }
+    .nav-btn { font-family: 'Titan One', cursive; font-size: 1.1rem; padding: 10px 25px; border: 4px solid var(--outline-black); border-radius: 25px; cursor: pointer; transition: all 0.2s ease; box-shadow: 4px 4px 0 var(--outline-black); }
+    .nav-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 6px 6px 0 var(--outline-black); }
+    .nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .nav-btn.prev { background: var(--bubble-white); color: var(--outline-black); }
+    .nav-btn.next { background: var(--ocean-blue); color: white; }
+    .nav-btn.export { background: var(--krabby-red); color: white; font-size: 0.9rem; padding: 10px 15px; }
+    .page-indicator { font-family: 'Titan One', cursive; font-size: 1.2rem; color: var(--outline-black); }
+
+    .glossary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .glossary-item { background: white; border: 3px solid var(--outline-black); border-radius: 10px; padding: 12px; box-shadow: 3px 3px 0 var(--outline-black); }
+    .glossary-item .term { font-family: 'Titan One', cursive; font-size: 0.9rem; color: var(--deep-blue); margin-bottom: 4px; }
+    .glossary-item .def { font-size: 0.8rem; line-height: 1.4; }
+
+    .credits-section { background: white; border: 4px solid var(--outline-black); border-radius: 12px; padding: 15px; margin: 10px 0; box-shadow: 4px 4px 0 var(--outline-black); }
+    .credits-section h3 { font-family: 'Titan One', cursive; font-size: 1rem; color: var(--deep-blue); margin-bottom: 8px; padding-bottom: 5px; border-bottom: 3px solid var(--sponge-yellow); }
+    .credits-section ul { list-style: none; padding: 0; }
+    .credits-section li { padding: 4px 0; padding-left: 15px; position: relative; font-size: 0.75rem; }
+    .credits-section li::before { content: ''; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; background: var(--sponge-yellow); border: 2px solid var(--outline-black); border-radius: 50%; }
+
+    .highlight { background: var(--sponge-yellow); padding: 2px 6px; border-radius: 5px; font-weight: bold; }
+
+    /* EXPORT OVERLAY */
+    #exportOverlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85); z-index: 1000;
+      display: none; align-items: center; justify-content: center;
+    }
+    .export-box {
+      background: white; padding: 20px; border-radius: 10px; width: 90%; max-width: 600px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    #exportText { width: 100%; height: 200px; font-family: monospace; font-size: 0.8rem; padding: 10px; }
+    .close-export { align-self: flex-end; cursor: pointer; color: red; font-weight: bold; }
+
+    @media (max-width: 650px) {
+      .comic-title { font-size: 2.5rem; }
+      .grid-half, .grid-thirds, .grid-2-1, .grid-1-2 { grid-template-columns: 1fr; }
+      .panel.span-2, .panel.span-3 { grid-column: span 1; }
+      .glossary-grid { grid-template-columns: 1fr; }
+      .demo-slider-row { flex-direction: column; align-items: stretch; }
+      .demo-slider-label { min-width: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="comic-wrapper">
+    <div class="comic-book">
+      
+      <div class="comic-page active" data-page="1">
+        <div class="cover-page">
+          <div class="cover-image-slot">
+            <img src="cover art.jpg" alt="Cover Art" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1);">
+          </div>
+          <h1 class="comic-title">THE NEURAL<br>NETWORK SQUAD</h1>
+          <p class="comic-subtitle">A Deep Learning Adventure</p>
+          <div class="cover-characters">
+            <div class="cover-character wally">WALLY</div>
+            <div class="cover-character bella">BELLA</div>
+            <div class="cover-character siggy">SIGGY</div>
+            <div class="cover-character tanya">TANYA</div>
+            <div class="cover-character rex">REX</div>
+          </div>
+          <button class="start-reading" onclick="nextPage()">START READING</button>
+        </div>
+      </div>
+
+      <div class="comic-page" data-page="2">
+        <div class="narrator-card">Meanwhile, inside a computer's brain...</div>
+        <div class="panel-grid grid-half">
+          <div class="panel">
+            <div class="image-placeholder problem">
+              <img src="chaos computer scene-10.jpg" alt="Chaos Scene" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.5);">
+            </div>
+            <div class="panel-content">
+              <p style="font-weight: bold;">Deep inside every smart computer, there is a BIG problem...</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="image-placeholder problem" style="aspect-ratio: 4/3;">
+              <img src="confused computer-11.jpg" alt="Confused Computer" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.5);">
+            </div>
+            <div class="panel-content">
+              <div class="speech-bubble">
+                <span class="speaker-name">COMPUTER</span>
+                "Is that a CAT... or a TOASTER?! I can not tell!"
+              </div>
+            </div>
+          </div>
+          <div class="panel span-2">
+            <div class="panel-content">
+              <div class="info-box">
+                <h3>THE PROBLEM</h3>
+                <p>When millions of signals flow through at once, everything gets <span class="highlight">MESSY!</span> It is like playing telephone with a million friends - by the end, nobody knows the original message!</p>
+              </div>
+              <div class="info-box success">
+                <h3>BUT WAIT!</h3>
+                <p>Five special heroes work TOGETHER to fix this. Each has a unique SUPERPOWER! Let us meet them...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comic-page" data-page="3">
+        <div class="narrator-card">First up... The Importance Adjuster!</div>
+        <div class="panel-grid grid-2-1">
+          <div class="panel">
+            <div class="image-placeholder character" style="flex: 1; min-height: 0; aspect-ratio: auto;">
+               <img src="wally-weight.png" alt="Wally Weight" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.5);">
+            </div>
+
+            <div class="panel-content" style="text-align: center;">
+              <h2 class="section-title">WALLY WEIGHT</h2>
+              <span class="character-role">THE IMPORTANCE ADJUSTER</span>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-content">
+              <div class="speech-bubble bubble-wally">
+                <span class="speaker-name">WALLY</span>
+                "Hey there! I am WALLY WEIGHT! I decide how IMPORTANT things are!"
+              </div>
+              <div class="speech-bubble bubble-wally right">
+                <span class="speaker-name">WALLY</span>
+                "I can make signals BIGGER if they matter, or SMALLER if they do not!"
+              </div>
+              <div class="definition-box">
+                <div class="term">WEIGHT</div>
+                <div class="meaning">A number that multiplies an input signal to make it stronger or weaker.</div>
+                <div class="simple">Simple: It is like a volume knob that controls how loud each input is!</div>
+              </div>
+              <div class="info-box power">
+                <h3>WALLY'S POWER</h3>
+                <p>MULTIPLY signals to adjust importance!</p>
+                <p style="margin-top: 8px; font-size: 0.85rem;">Weight of 2 = Double importance<br>Weight of 0.5 = Half importance<br>Weight of -1 = Flip it around!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-grid grid-full" style="padding-top: 0;">
+          <div class="panel">
+            <div class="panel-content">
+              <div class="demo-container">
+                <div class="demo-title">TRY IT: Wally's Weight Adjuster</div>
+                <div class="demo-slider-row">
+                  <span class="demo-slider-label">Input:</span>
+                  <input type="range" class="demo-slider" id="weightInput" min="1" max="10" value="5">
+                  <span class="demo-slider-value" id="weightInputVal">5</span>
+                </div>
+                <div class="demo-slider-row">
+                  <span class="demo-slider-label">Weight:</span>
+                  <input type="range" class="demo-slider" id="weightValue" min="-20" max="20" value="10" step="1">
+                  <span class="demo-slider-value" id="weightValueVal">1.0</span>
+                </div>
+                <div class="demo-result">
+                  <div class="demo-box"><div class="label">Input</div><div class="value" id="wDemo1">5</div></div>
+                  <div class="demo-box"><div class="label">x Weight</div><div class="value" id="wDemo2">1.0</div></div>
+                  <div class="demo-box result"><div class="label">= Result</div><div class="value" id="wDemo3">5.0</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comic-page" data-page="4">
+        <div class="narrator-card">Next... The Head Start Hero!</div>
+        <div class="panel-grid grid-1-2">
+          <div class="panel">
+            <div class="panel-content">
+              <div class="speech-bubble bubble-bella">
+                <span class="speaker-name">BELLA</span>
+                "Hi! I am BELLA BIAS! I give signals a HEAD START!"
+              </div>
+              <div class="speech-bubble bubble-bella right">
+                <span class="speaker-name">BELLA</span>
+                "Think of it like extra credit on a test - even if you start with zero, I add bonus points!"
+              </div>
+              <div class="definition-box">
+                <div class="term">BIAS</div>
+                <div class="meaning">A number that gets ADDED after the weights do their multiplication. It shifts the starting point.</div>
+                <div class="simple">Simple: It is like getting bonus points before you even start!</div>
+              </div>
+              <div class="info-box power">
+                <h3>BELLA'S POWER</h3>
+                <p>ADD a boost to every signal!</p>
+                <p style="margin-top: 8px; font-size: 0.85rem;">After Wally multiplies, Bella ADDS her number.</p>
+              </div>
+              <div class="info-box formula">(Input x Weight) + Bias = Result</div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="image-placeholder character" style="flex: 1; min-height: 0; aspect-ratio: auto;">
+              <img src="bella-bias.jpg" alt="Bella Bias" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.5);">
+            </div>
+            <div class="panel-content" style="text-align: center;">
+              <h2 class="section-title">BELLA BIAS</h2>
+              <span class="character-role">THE HEAD START HERO</span>
+            </div>
+          </div>
+        </div>
+        <div class="panel-grid grid-full" style="padding-top: 0;">
+          <div class="panel">
+            <div class="panel-content">
+              <div class="demo-container">
+                <div class="demo-title">TRY IT: Bella's Bias Booster</div>
+                <div class="demo-slider-row">
+                  <span class="demo-slider-label">Weighted Input:</span>
+                  <input type="range" class="demo-slider" id="biasInput" min="0" max="10" value="5">
+                  <span class="demo-slider-value" id="biasInputVal">5</span>
+                </div>
+                <div class="demo-slider-row">
+                  <span class="demo-slider-label">Bias:</span>
+                  <input type="range" class="demo-slider" id="biasValue" min="-5" max="5" value="2" step="0.5">
+                  <span class="demo-slider-value" id="biasValueVal">+2</span>
+                </div>
+                <div class="demo-result">
+                  <div class="demo-box"><div class="label">Weighted</div><div class="value" id="bDemo1">5</div></div>
+                  <div class="demo-box"><div class="label">+ Bias</div><div class="value" id="bDemo2">+2</div></div>
+                  <div class="demo-box result"><div class="label">= Result</div><div class="value" id="bDemo3">7</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comic-page" data-page="5">
+        <div class="narrator-card">Finally... The Gatekeepers!</div>
+        <div class="panel-grid grid-thirds">
+          <div class="panel">
+            <div class="image-placeholder character square">
+              <img src="siggy-1.jpg" alt="Siggy" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.35);">
+            </div>
+            <div class="panel-content" style="text-align: center;">
+              <h3 style="font-family: 'Titan One', cursive; color: var(--plankton-green); font-size: 1.1rem;">SIGGY SIGMOID</h3>
+              <span class="character-role">THE PROBABILITY PRO</span>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="image-placeholder character square">
+              <img src="tanya.jpg" alt="Tanya" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.28);">
+            </div>
+            <div class="panel-content" style="text-align: center;">
+              <h3 style="font-family: 'Titan One', cursive; color: var(--gary-purple); font-size: 1.1rem;">TANYA TANH</h3>
+              <span class="character-role">THE BALANCE KEEPER</span>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="image-placeholder character square">
+              <img src="rex-3.jpg" alt="Rex" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.28);">
+            </div>
+            <div class="panel-content" style="text-align: center;">
+              <h3 style="font-family: 'Titan One', cursive; color: #FF6347; font-size: 1.1rem;">REX RELU</h3>
+              <span class="character-role">THE GATEKEEPER</span>
+            </div>
+          </div>
+        </div>
+        <div class="panel-grid grid-full" style="padding-top: 0;">
+          <div class="panel">
+            <div class="image-placeholder wide success">
+              <img src="functions.jpg" alt="Activation Squad" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: auto;">
+            </div>
+          </div>
+        </div>
+        <div class="panel-grid grid-full" style="padding-top: 0;">
+          <div class="panel">
+            <div class="panel-content">
+              <div class="definition-box">
+                <div class="term">ACTIVATION FUNCTION</div>
+                <div class="meaning">A function that takes the weighted-and-biased signal and transforms it. It decides what actually gets through and how.</div>
+                <div class="simple">Simple: They are the bouncers at the club - they decide who gets in and how!</div>
+              </div>
+              <div class="info-box power">
+                <h3>WHY ACTIVATION MATTERS</h3>
+                <p>Without them, AI could only learn STRAIGHT lines. They add the CURVES that let AI recognize faces, understand speech, and more!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comic-page" data-page="6">
+        <div class="narrator-card">Let us see their powers in action!</div>
+        <div class="panel-grid grid-thirds">
+          <div class="panel">
+            <div class="panel-content">
+              <div class="speech-bubble bubble-siggy no-tail" style="font-size: 0.85rem;">
+                <span class="speaker-name">SIGGY</span>
+                "I squish everything between 0 and 1. Perfect for YES or NO questions!"
+              </div>
+              
+              <div class="image-placeholder" style="aspect-ratio: 16/9; background: #F0FFF0; padding: 10px; align-items: stretch;">
+                <svg class="graph-svg" viewBox="0 0 200 130" preserveAspectRatio="none">
+                   <line x1="45" y1="25" x2="190" y2="25" class="graph-grid" /> <line x1="45" y1="105" x2="190" y2="105" class="graph-grid" /> <line x1="45" y1="15" x2="45" y2="115" class="graph-axis"/> <line x1="45" y1="115" x2="190" y2="115" class="graph-axis"/> <path d="M 45 105 C 120 105, 120 25, 190 25" class="graph-curve" style="stroke: var(--plankton-green);"/>
+                   
+                   <text x="38" y="30" text-anchor="end" class="graph-label-text" dominant-baseline="middle">1</text>
+                   <text x="38" y="105" text-anchor="end" class="graph-label-text" dominant-baseline="middle">0</text>
+                </svg>
+              </div>
+
+              <div style="text-align: center; margin-top: 10px;"><strong>Output: 0 to 1</strong><br><span style="font-size: 0.8rem;">Best for probabilities!</span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-content">
+              <div class="speech-bubble bubble-tanya no-tail" style="font-size: 0.85rem;">
+                <span class="speaker-name">TANYA</span>
+                "I keep things balanced between -1 and +1. Centered and calm!"
+              </div>
+
+              <div class="image-placeholder" style="aspect-ratio: 16/9; background: #F5F0FF; padding: 10px; align-items: stretch;">
+                  <svg class="graph-svg" viewBox="0 0 200 130" preserveAspectRatio="none">
+                    <line x1="45" y1="25" x2="190" y2="25" class="graph-grid" /> <line x1="45" y1="105" x2="190" y2="105" class="graph-grid" /> <line x1="45" y1="15" x2="45" y2="115" class="graph-axis"/> <line x1="45" y1="65" x2="190" y2="65" class="graph-axis" style="stroke-width: 2; stroke-dasharray: 4,4; opacity: 0.6;"/> <path d="M 45 105 C 100 105, 120 65, 130 65 S 160 25, 190 25" class="graph-curve" style="stroke: var(--gary-purple);"/>
+                    
+                    <text x="38" y="30" text-anchor="end" class="graph-label-text" dominant-baseline="middle">+1</text>
+                    <text x="38" y="65" text-anchor="end" class="graph-label-text" dominant-baseline="middle">0</text>
+                    <text x="38" y="105" text-anchor="end" class="graph-label-text" dominant-baseline="middle">-1</text>
+                  </svg>
+              </div>
+
+              <div style="text-align: center; margin-top: 10px;"><strong>Output: -1 to +1</strong><br><span style="font-size: 0.8rem;">Best for balance!</span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-content">
+              <div class="speech-bubble bubble-rex no-tail" style="font-size: 0.85rem;">
+                <span class="speaker-name">REX</span>
+                "Simple! Positive? Come through. Negative? BLOCKED!"
+              </div>
+
+              <div class="image-placeholder" style="aspect-ratio: 16/9; background: #FFF5EE; padding: 10px; align-items: stretch;">
+                <svg class="graph-svg" viewBox="0 0 200 130" preserveAspectRatio="none">
+                   <line x1="45" y1="15" x2="45" y2="115" class="graph-axis"/> <line x1="45" y1="115" x2="190" y2="115" class="graph-axis"/> <polyline points="45,115 100,115 190,25" class="graph-curve" style="stroke: #FF6347; stroke-linejoin: round;"/>
+                   
+                   <text x="38" y="25" text-anchor="end" class="graph-label-text" dominant-baseline="middle">Max</text>
+                   <text x="38" y="110" text-anchor="end" class="graph-label-text" dominant-baseline="middle">0</text>
+                </svg>
+              </div>
+
+              <div style="text-align: center; margin-top: 10px;"><strong>Output: 0 or positive</strong><br><span style="font-size: 0.8rem;">Best for simple decisions!</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-grid grid-full" style="padding-top: 0;">
+          <div class="panel">
+            <div class="panel-content">
+              <div class="info-box">
+                <h3>WHY SO MANY TYPES?</h3>
+                <p>Different problems need different gatekeepers! Siggy is great for "how likely" questions. Tanya keeps things centered. Rex is fast and simple. The right choice depends on the job!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comic-page" data-page="7">
+        <div class="narrator-card">But there is a problem...</div>
+        <div class="panel-grid grid-half">
+          <div class="panel">
+            <div class="image-placeholder action" style="aspect-ratio: 4/3;">
+              <img src="confused wally.jpg" alt="Wally Struggling" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.5);">
+            </div>
+            <div class="panel-content">
+              <div class="speech-bubble bubble-wally"><span class="speaker-name">WALLY</span>"I made things BIGGER... but the signal is still wrong!"</div>
+              <span class="sfx">BONK!</span>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="image-placeholder action" style="aspect-ratio: 4/3;">
+              <img src="confused bella.jpg" alt="Bella Struggling" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.5);">
+            </div>
+            <div class="panel-content">
+              <div class="speech-bubble bubble-bella"><span class="speaker-name">BELLA</span>"I added a head start... but now EVERYTHING is too high!"</div>
+              <span class="sfx">WHOOPS!</span>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="image-placeholder action" style="aspect-ratio: 4/3;">
+              <img src="confused rex-1.jpg" alt="Rex Struggling" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.5);">
+            </div>
+            <div class="panel-content">
+              <div class="speech-bubble bubble-rex"><span class="speaker-name">REX</span>"I blocked the negatives... but I need better input first!"</div>
+              <span class="sfx">DENIED!</span>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-content" style="flex: 1; display: flex;">
+              <div class="info-box danger" style="flex: 1; margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                <h3 style="font-size: 1.6rem; margin-bottom: 15px;">THE LESSON</h3>
+                <p style="font-size: 1.4rem; margin-bottom: 15px;"><strong>ALONE, they each FAIL!</strong></p>
+                <p style="font-size: 1.15rem; line-height: 1.4;">Each hero is powerful, but they can not solve the problem by themselves. They need to work TOGETHER!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comic-page" data-page="8">
+        <div class="narrator-card">Together, they are unstoppable!</div>
+        <div class="panel-grid grid-full">
+          <div class="panel">
+            <div class="image-placeholder success" style="aspect-ratio: 21/9;">
+              <img src="victory-4.jpg" alt="Team Victory" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1);">
+            </div>
+          </div>
+        </div>
+        <div class="panel-grid grid-half" style="padding-top: 0;">
+          <div class="panel">
+            <div class="panel-content">
+              <div class="speech-bubble bubble-wally"><span class="speaker-name">WALLY</span>"First, I adjust the IMPORTANCE!"</div>
+              <div class="speech-bubble bubble-bella right"><span class="speaker-name">BELLA</span>"Then I add the perfect HEAD START!"</div>
+              <div class="speech-bubble bubble-rex"><span class="speaker-name">REX</span>"And I make the final DECISION!"</div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-content">
+              <div class="flow-diagram">
+                <div class="flow-step">INPUT</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step" style="background: var(--sandy-brown);">x WEIGHT</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step" style="background: var(--patrick-pink); color: var(--outline-black);">+ BIAS</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step" style="background: var(--krabby-red);">ACTIVATION</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step" style="background: var(--kelp-green);">OUTPUT</div>
+              </div>
+              <div class="info-box success"><h3>TEAMWORK WINS!</h3><p>When they work in ORDER - Weights, then Bias, then Activation - the signal comes out PERFECT!</p></div>
+              <div style="text-align: center; margin-top: 10px;"><span class="sfx" style="font-size: 2.5rem;">PERFECT!</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comic-page" data-page="9">
+        <div class="narrator-card">The Complete Picture</div>
+        <div class="panel-grid grid-full">
+          <div class="panel">
+            <div class="panel-content">
+              <h2 class="section-title">HOW A NEURON THINKS</h2>
+              <div class="image-placeholder" style="aspect-ratio: 21/9;">
+                <span class="placeholder-label">NEURON DIAGRAM</span>
+                <span class="placeholder-desc">Click to upload neuron diagram</span>
+              </div>
+              <div class="flow-diagram" style="margin: 15px 0;">
+                <div class="flow-step">INPUTS</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step" style="background: var(--sandy-brown);">x WEIGHTS<br><small style="font-size:0.6rem;">Wally</small></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step" style="background: var(--patrick-pink); color: var(--outline-black);">+ BIAS<br><small style="font-size:0.6rem;">Bella</small></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step" style="background: var(--gary-purple);">ACTIVATION<br><small style="font-size:0.6rem;">Squad</small></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step" style="background: var(--kelp-green);">OUTPUT</div>
+              </div>
+              <div class="info-box formula" style="font-size: 1.4rem; padding: 20px;">OUTPUT = Activation( Weight x Input + Bias )</div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px;">
+                <div class="definition-box" style="padding: 10px;"><div class="term" style="font-size: 0.85rem;">WEIGHTS</div><div class="meaning" style="font-size: 0.8rem;">Multiply to set importance</div></div>
+                <div class="definition-box" style="padding: 10px;"><div class="term" style="font-size: 0.85rem;">BIAS</div><div class="meaning" style="font-size: 0.8rem;">Add a head start</div></div>
+                <div class="definition-box" style="padding: 10px;"><div class="term" style="font-size: 0.85rem;">ACTIVATION</div><div class="meaning" style="font-size: 0.8rem;">Shape the final output</div></div>
+              </div>
+              <div class="info-box success" style="margin-top: 15px; text-align: center;">
+                <p style="font-size: 1.1rem;"><strong>And when MILLIONS of neurons do this together?</strong></p>
+                <p style="font-size: 1.2rem; margin-top: 5px;">That is <span class="highlight">DEEP LEARNING!</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comic-page" data-page="10">
+        <div class="narrator-card">Glossary and Credits</div>
+        <div class="panel-grid grid-half">
+          <div class="panel">
+            <div class="panel-content">
+              <h3 class="section-title" style="font-size: 1.3rem; margin-bottom: 15px;">GLOSSARY</h3>
+              <div class="glossary-grid">
+                <div class="glossary-item"><div class="term">Neural Network</div><div class="def">A system of connected neurons that work together to process information, like a digital brain.</div></div>
+                <div class="glossary-item"><div class="term">Neuron</div><div class="def">A single unit that takes inputs, processes them, and produces an output.</div></div>
+                <div class="glossary-item"><div class="term">Weight</div><div class="def">A number that multiplies an input to adjust its importance.</div></div>
+                <div class="glossary-item"><div class="term">Bias</div><div class="def">A number added after weights to shift the starting point.</div></div>
+                <div class="glossary-item"><div class="term">Activation Function</div><div class="def">A function that transforms the signal and adds non-linearity.</div></div>
+                <div class="glossary-item"><div class="term">Deep Learning</div><div class="def">AI that uses many layers of neurons to learn complex patterns.</div></div>
+                <div class="glossary-item"><div class="term">Signal</div><div class="def">Information flowing through the network, like data traveling through wires.</div></div>
+                <div class="glossary-item"><div class="term">Non-linearity</div><div class="def">The ability to learn curves and complex patterns, not just straight lines.</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-content">
+              <div class="credits-section"><h3>CREATED BY</h3><p style="font-size: 0.9rem; line-height: 1.5;"><strong>DeMarcus, Chloe, Matthew, Franck</strong><br>Houston City College<br>ITAI 2376: Deep Learning</p></div>
+              <div class="credits-section"><h3>RESEARCH SOURCES</h3><ul><li>GeeksforGeeks - Role of Weights and Bias</li><li>Coursera - Neural Network Weights Guide</li><li>DeepAI - Weight Definition</li><li>Turing - Neural Network Bias</li><li>Baeldung - Bias in Neural Networks</li><li>V7Labs - Activation Functions</li><li>DataCamp - Intro to Activation Functions</li><li>Google Developers - Activation Functions</li></ul></div>
+              <div class="info-box" style="text-align: center; margin-top: 10px;"><h3 style="font-size: 1.3rem;">THANKS FOR READING!</h3><p>Now YOU know how AI thinks!</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav-bar">
+        <button class="nav-btn prev" onclick="prevPage()" id="prevBtn" disabled>BACK</button>
+        <div class="page-indicator">PAGE <span id="currentPage">1</span> / <span id="totalPages">10</span></div>
+        <button class="nav-btn next" onclick="nextPage()" id="nextBtn">NEXT</button>
+      </nav>
+    </div>
+  </div>
+
+  <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+
+  <div id="exportOverlay">
+    <div class="export-box">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3>EXPORTED CODE</h3>
+        <span class="close-export" onclick="document.getElementById('exportOverlay').style.display='none'">X</span>
+      </div>
+      <p style="font-size: 0.8rem; color: #555;">Copy the lines below and replace the placeholders in your HTML file to make these images permanent.</p>
+      <textarea id="exportText" readonly></textarea>
+      <button class="nav-btn next" onclick="copyExportText()">COPY TO CLIPBOARD</button>
+    </div>
+  </div>
+
+  <script>
+    let currentPage = 1;
+    const totalPages = 10;
+
+    function updateDisplay() {
+      document.querySelectorAll('.comic-page').forEach(page => page.classList.remove('active'));
+      const activePage = document.querySelector('[data-page="' + currentPage + '"]');
+      if (activePage) activePage.classList.add('active');
+      document.getElementById('currentPage').textContent = currentPage;
+      document.getElementById('totalPages').textContent = totalPages;
+      document.getElementById('prevBtn').disabled = currentPage === 1;
+      document.getElementById('nextBtn').disabled = currentPage === totalPages;
+      document.getElementById('nextBtn').textContent = currentPage === totalPages ? 'THE END' : 'NEXT';
+    }
+
+    function nextPage() { if (currentPage < totalPages) { currentPage++; updateDisplay(); window.scrollTo({ top: 0, behavior: 'smooth' }); } }
+    function prevPage() { if (currentPage > 1) { currentPage--; updateDisplay(); window.scrollTo({ top: 0, behavior: 'smooth' }); } }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextPage(); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); prevPage(); }
+    });
+
+    var weightInput = document.getElementById('weightInput');
+    var weightValue = document.getElementById('weightValue');
+    function updateWeightDemo() {
+      var input = parseFloat(weightInput.value);
+      var weight = parseFloat(weightValue.value) / 10;
+      var result = (input * weight).toFixed(1);
+      document.getElementById('weightInputVal').textContent = input;
+      document.getElementById('weightValueVal').textContent = weight.toFixed(1);
+      document.getElementById('wDemo1').textContent = input;
+      document.getElementById('wDemo2').textContent = weight.toFixed(1);
+      document.getElementById('wDemo3').textContent = result;
+    }
+    weightInput.addEventListener('input', updateWeightDemo);
+    weightValue.addEventListener('input', updateWeightDemo);
+
+    var biasInput = document.getElementById('biasInput');
+    var biasValue = document.getElementById('biasValue');
+    function updateBiasDemo() {
+      var input = parseFloat(biasInput.value);
+      var bias = parseFloat(biasValue.value);
+      var result = (input + bias).toFixed(1);
+      document.getElementById('biasInputVal').textContent = input;
+      document.getElementById('biasValueVal').textContent = bias >= 0 ? '+' + bias : bias;
+      document.getElementById('bDemo1').textContent = input;
+      document.getElementById('bDemo2').textContent = bias >= 0 ? '+' + bias : bias;
+      document.getElementById('bDemo3').textContent = result;
+    }
+    biasInput.addEventListener('input', updateBiasDemo);
+    biasValue.addEventListener('input', updateBiasDemo);
+
+    /* --- IMAGE UPLOAD LOGIC --- */
+    const fileInput = document.getElementById('imageUpload');
+    let currentUploadTarget = null;
+
+    function makeImageDraggable(img) {
+      let isDragging = false;
+      let startX, startY;
+      let currentScale = 1;
+      let currentX = 0;
+      let currentY = 0;
+
+      img.addEventListener('dragstart', (e) => e.preventDefault());
+
+      img.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY * -0.001; 
+        const newScale = Math.min(Math.max(0.1, currentScale + delta), 5); 
+        currentScale = newScale;
+        updateTransform();
+      });
+
+      img.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX - currentX;
+        startY = e.clientY - currentY;
+        img.style.cursor = 'grabbing';
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+        img.style.cursor = 'grab';
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        currentX = e.clientX - startX;
+        currentY = e.clientY - startY;
+        updateTransform();
+      });
+      
+      img.addEventListener('dblclick', () => {
+        currentScale = 1;
+        currentX = 0;
+        currentY = 0;
+        updateTransform();
+      });
+
+      function updateTransform() {
+        img.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px)) scale(${currentScale})`;
+      }
+    }
+
+    document.querySelectorAll('.image-placeholder').forEach(placeholder => {
+        placeholder.addEventListener('click', function(e) {
+            if (e.target.tagName !== 'IMG') {
+                currentUploadTarget = this;
+                fileInput.click();
+            }
+        });
+        // Re-init draggable for existing images on load
+        const img = placeholder.querySelector('img');
+        if (img) makeImageDraggable(img);
+    });
+
+    fileInput.addEventListener('change', function(e) {
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const existingImg = currentUploadTarget.querySelector('img');
+                if (existingImg) existingImg.remove();
+
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.title = "Scroll to Zoom, Drag to Pan, Double-click to Reset";
+                makeImageDraggable(img);
+                currentUploadTarget.appendChild(img);
+            }
+            reader.readAsDataURL(file);
+        }
+        fileInput.value = '';
+    });
+
+    /* --- EXPORT LOGIC --- */
+    function exportCode() {
+      let output = "";
+      const placeholders = document.querySelectorAll('.image-placeholder');
+      
+      placeholders.forEach((ph, index) => {
+        const img = ph.querySelector('img');
+        if (img && img.src.startsWith('data:')) {
+           const transformStyle = img.style.transform;
+           const label = ph.querySelector('.placeholder-label')?.textContent || `Panel ${index + 1}`;
+           output += `\n<div class="image-placeholder ...">\n  <img src="YOUR_FILENAME_HERE.jpg" style="transform: ${transformStyle}">\n</div>\n\n`;
+        }
+      });
+
+      if (output === "") {
+        output = "No custom images uploaded yet! Upload and position images first.";
+      } else {
+        output = "\n" + output;
+      }
+
+      document.getElementById('exportText').value = output;
+      document.getElementById('exportOverlay').style.display = 'flex';
+    }
+
+    function copyExportText() {
+      const copyText = document.getElementById("exportText");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); 
+      document.execCommand("copy");
+      
+      // Replaced alert with button feedback
+      const btn = document.querySelector('.export-box .nav-btn');
+      const originalText = btn.innerText;
+      btn.innerText = "COPIED!";
+      btn.style.background = "#32CD32"; // plankton-green
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.background = ""; // Reset to default (via CSS class)
+      }, 2000);
+    }
+
+    updateDisplay();
+  </script>
+</body>
+</html>

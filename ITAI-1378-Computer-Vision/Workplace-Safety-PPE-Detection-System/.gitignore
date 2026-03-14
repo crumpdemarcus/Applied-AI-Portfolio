@@ -1,0 +1,26 @@
+# Large model files
+*.pt
+*.pth
+*.onnx
+models/trained/*.pt
+models/pretrained/*.pt
+ 
+# Full dataset folders
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+ 
+# Training results (too large)
+training_results/
+runs/
+ 
+# System files
+.DS_Store
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+ 
+# Environment
+.env
+venv/

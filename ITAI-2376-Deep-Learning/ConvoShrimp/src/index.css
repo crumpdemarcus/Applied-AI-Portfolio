@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --shrimp-coral: #FF6B6B;
+  --shrimp-teal: #4ECDC4;
+  --shrimp-purple: #9B5DE5;
+  --shrimp-yellow: #F7DC6F;
+  --shrimp-hot-pink: #FF1493;
+  --shrimp-electric-blue: #00D4FF;
+  --deep-ocean: #0a0a1a;
+  --bioluminescent: #12122a;
+  --card-surface: #1a1a3e;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0c0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0a1a;
+  color: #ffffff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Holographic gradient effect */
+.holographic {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 150, 0.4) 0%,
+    rgba(0, 255, 255, 0.4) 25%,
+    rgba(255, 255, 0, 0.4) 50%,
+    rgba(255, 0, 150, 0.4) 75%,
+    rgba(0, 255, 255, 0.4) 100%
+  );
+  background-size: 400% 400%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Card glow effect */
+.card-glow {
+  box-shadow: 0 0 30px rgba(78, 205, 196, 0.3);
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 50px rgba(78, 205, 196, 0.5);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4ECDC4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00D4FF;
+}
+
+/* Section styling */
+.section {
+  min-height: 100vh;
+  padding: 6rem 2rem 2rem;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #4ECDC4, #9B5DE5, #FF1493);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Print styles */
+@media print {
+  /* Force each major section to start on a new page */
+  .section,
+  .pdf-section {
+    page-break-before: always;
+    page-break-inside: avoid;
+  }
+  
+  /* First section shouldn't have page break before */
+  .section:first-of-type,
+  .pdf-section:first-of-type {
+    page-break-before: auto;
+  }
+  
+  /* Hide navigation and interactive elements */
+  .no-print {
+    display: none !important;
+  }
+  
+  /* Preserve colors exactly */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  body {
+    background: #0a0a1a;
+    color: #ffffff;
+  }
+  
+  .card-glow {
+    box-shadow: none;
+    border: 2px solid #4ECDC4;
+  }
+  
+  .pdf-card,
+  [class*="rounded-2xl"],
+  [class*="rounded-xl"] {
+    page-break-inside: avoid;
+  }
+  
+  img, svg {
+    page-break-inside: avoid;
+  }
+  
+  pre, code {
+    page-break-inside: avoid;
+  }
+  
+  .timeline-item {
+    page-break-inside: avoid;
+  }
+}
+
+/* Printing mode styles - applied when body has .printing class */
+body.printing {
+  background: #0a0a1a !important;
+}
+
+body.printing .section,
+body.printing .pdf-section {
+  min-height: auto !important;
+  padding: 2rem 1rem !important;
+  page-break-before: always;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+body.printing .section:first-of-type,
+body.printing .pdf-section:first-of-type {
+  page-break-before: auto;
+}
+
+body.printing .no-print,
+body.printing nav {
+  display: none !important;
+}
+
+body.printing .animate-float,
+body.printing .holographic {
+  animation: none !important;
+}
+
+body.printing .card-glow {
+  box-shadow: none !important;
+  border: 2px solid #4ECDC4;
+}
+
+body.printing .gradient-text {
+  background: linear-gradient(135deg, #4ECDC4, #9B5DE5, #FF1493);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.printing img {
+  max-width: 100% !important;
+  page-break-inside: avoid;
+}
+
+body.printing .grid {
+  page-break-inside: avoid;
+}
+
+body.printing pre {
+  page-break-inside: avoid;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Class for PDF-specific section styling */
+.pdf-section {
+  break-inside: avoid;
+}
+

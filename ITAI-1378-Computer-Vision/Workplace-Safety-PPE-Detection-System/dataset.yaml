@@ -1,0 +1,17 @@
+path: /content/drive/MyDrive/PPE_Project/dataset_resplit
+train: images/train
+val: images/val
+test: images/test
+
+nc: 10
+names:
+  0: Hardhat
+  1: NO-Hardhat
+  2: Safety Vest
+  3: NO-Safety Vest
+  4: Mask
+  5: NO-Mask
+  6: Person
+  7: Safety Cone
+  8: Machinery
+  9: Vehicle
