@@ -9,7 +9,7 @@
 
 ## Overview
 
-One full-stack web application and three hands-on lab notebooks built during my NLP coursework (ITAI-2373). The work covers the full NLP pipeline — from raw text preprocessing and feature engineering through sentiment classification and named entity recognition — culminating in a production-ready news analysis platform.
+One full-stack web application and three hands-on lab notebooks built during my NLP coursework (ITAI-2373). The work covers the full NLP pipeline — from raw text preprocessing and feature engineering through sentiment classification and named entity recognition — culminating in a fully functional news analysis platform.
 
 ## Projects
 
@@ -27,7 +27,7 @@ A modern full-stack application that aggregates news articles, performs real-tim
 
 ### 2. Lab Notebooks
 
-#### [L04: Text Preprocessing & Feature Extraction](./L04_DeMarcusCrump_ITAI_2373.ipynb)
+#### [L04: Text Preprocessing & Feature Extraction](./Lab-04-Text-Preprocessing.ipynb)
 
 End-to-end NLP preprocessing pipeline — text cleaning, tokenization (word/sentence/n-gram), stop word removal, stemming vs. lemmatization comparisons, TF-IDF vectorization, and frequency distribution analysis.
 
@@ -38,7 +38,7 @@ End-to-end NLP preprocessing pipeline — text cleaning, tokenization (word/sent
 
 ---
 
-#### [L05: Sentiment Analysis & Classification](./L05_Crump_DeMarcus_ITAI2373.ipynb)
+#### [L05: Sentiment Analysis & Classification](./Lab-05-Sentiment-Analysis.ipynb)
 
 Sentiment classification system with binary and multi-class models, evaluation metrics, and confusion matrix analysis.
 
@@ -49,7 +49,7 @@ Sentiment classification system with binary and multi-class models, evaluation m
 
 ---
 
-#### [L07: Advanced NLP Applications](./L07_Crump_DeMarcus_ITAI2373.ipynb)
+#### [L07: Advanced NLP Applications](./Lab-07-Advanced-NLP.ipynb)
 
 Named Entity Recognition, POS tagging, text similarity, clustering, and advanced feature engineering with real-world text data.
 
@@ -82,9 +82,9 @@ ITAI-2373-Natural-Language-Processing/
 │   ├── server/
 │   ├── package.json
 │   └── results/
-├── L04_DeMarcusCrump_ITAI_2373.ipynb          # Text preprocessing & feature extraction
-├── L05_Crump_DeMarcus_ITAI2373.ipynb          # Sentiment analysis & classification
-└── L07_Crump_DeMarcus_ITAI2373.ipynb          # Advanced NLP applications
+├── Lab-04-Text-Preprocessing.ipynb             # Text preprocessing & feature extraction
+├── Lab-05-Sentiment-Analysis.ipynb             # Sentiment analysis & classification
+└── Lab-07-Advanced-NLP.ipynb                   # Advanced NLP applications
 ```
 
 ---

@@ -9,7 +9,7 @@
 
 Neural networks are foundational to modern AI, but their core mechanics — weights, biases, activation functions — are often introduced through dense mathematical notation that creates an unnecessarily high barrier for beginners. There is a need for educational tools that make these concepts intuitive without sacrificing technical accuracy.
 
-## Approach & Methodology
+## Approach and Methodology
 
 We built a browser-based interactive comic that personifies each neural network concept as an original illustrated character. Rather than relying on abstract equations, the project uses character-driven storytelling and live JavaScript demonstrations to let users *interact* with the math — adjusting weight sliders, watching bias offsets shift outputs, and seeing how ReLU, Sigmoid, and Tanh shape neuron activations in real time.
 
@@ -19,7 +19,7 @@ We built a browser-based interactive comic that personifies each neural network 
 - **Interactive demos** — Live sliders let users manipulate values and see immediate output changes
 - **Responsive layout** — Works across desktop, tablet, and mobile without a CSS framework
 
-## Results & Evaluation
+## Results and Evaluation
 
 - Runs in any modern browser with zero setup or installation
 - Fully responsive across desktop, tablet, and mobile viewports
@@ -44,7 +44,7 @@ We built a browser-based interactive comic that personifies each neural network 
 | **Tanya Tanh** | Tanh | Centering outputs around zero for balanced gradients |
 | **Rex ReLU** | ReLU | Gating negative values to zero for sparse activation |
 
-## Requirements & Dependencies
+## Requirements or Dependencies
 
 No installation required. Open `index.html` in any modern browser.
 
@@ -64,7 +64,11 @@ Neural-Network-Squad/
 └── LICENSE
 ```
 
-## What I Learned (Deep Learning Concepts)
+## Sample Data Access
+
+This interactive web comic does not process static datasets. It relies on user input via HTML sliders to dynamically generate output values and visualizations in real-time.
+
+## Learning Outcomes
 
 **How a single neuron computes:**
 - A neuron takes multiple inputs, multiplies each by a **weight** (which controls how important that input is), sums them, adds a **bias** (a constant offset that shifts the activation threshold), and passes the result through an **activation function**: `output = activation(Σ(wᵢ · xᵢ) + b)`. I built interactive sliders that let users adjust weight and bias values and watch the output change in real time.

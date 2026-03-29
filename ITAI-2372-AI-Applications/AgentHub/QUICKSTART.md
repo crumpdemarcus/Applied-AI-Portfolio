@@ -364,7 +364,7 @@ pytest --cov=. --cov-report=html
 
 ---
 
-## Production Deployment
+## Cloud Deployment
 
 ### Using Gunicorn
 

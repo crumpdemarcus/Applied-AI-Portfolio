@@ -7,14 +7,14 @@
 
 ## Overview
 
-One production-scale object detection system and two hands-on lab notebooks built during my Computer Vision coursework (ITAI-1378). The work covers the full CV pipeline — image preprocessing, CNN architecture design, transfer learning (VGG, ResNet, MobileNet), data augmentation, and real-time YOLOv8 object detection — applied to both standard benchmarks and a custom workplace safety dataset.
+One comprehensive object detection system and two hands-on lab notebooks built during my Computer Vision coursework (ITAI-1378). The work covers the full CV pipeline — image preprocessing, CNN architecture design, transfer learning (VGG, ResNet, MobileNet), data augmentation, and real-time YOLOv8 object detection — applied to both standard benchmarks and a custom workplace safety dataset.
 
 ## Projects
 
 ### 1. [Workplace Safety PPE Detection System](./Workplace-Safety-PPE-Detection-System/)
 **Real-Time Object Detection for Safety Compliance**
 
-A production-ready computer vision system that detects Personal Protective Equipment (PPE) in workplace environments using a custom-trained YOLOv8 model with transfer learning. Detects 10 PPE classes including hard hats, safety vests, gloves, and goggles.
+A fully functional computer vision system that detects Personal Protective Equipment (PPE) in workplace environments using a custom-trained YOLOv8 model with transfer learning. Detects 10 PPE classes including hard hats, safety vests, gloves, and goggles.
 
 | | |
 |---|---|
@@ -25,7 +25,7 @@ A production-ready computer vision system that detects Personal Protective Equip
 
 ### 2. Lab Notebooks
 
-#### [L04: Computer Vision Fundamentals](./L04_DeMarcusCrump_ITAI_1378.ipynb)
+#### [L04: Computer Vision Fundamentals](./Lab-04-CV-Fundamentals.ipynb)
 
 Complete CNN workflow — image preprocessing, data augmentation, custom CNN architectures, transfer learning (VGG16, ResNet50, MobileNetV2), and model evaluation with confusion matrices and accuracy/loss curves.
 
@@ -59,7 +59,7 @@ ITAI-1378-Computer-Vision/
 │   ├── data/
 │   ├── results/
 │   └── README.md
-├── L04_DeMarcusCrump_ITAI_1378.ipynb       # Core CV lab
+├── Lab-04-CV-Fundamentals.ipynb             # Core CV lab
 └── results/
 ```
 

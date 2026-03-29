@@ -9,7 +9,7 @@
 
 ## LLM Approach Selection
 
-For this project, I chose **Option A: OpenAI API** (specifically via Groq's API) for several compelling reasons. First, API-based LLMs provide production-ready reliability and consistent output quality without the computational overhead of running models locally. I implemented a **strategic multi-model architecture** that evolved throughout development to optimize for different use cases:
+For this project, I chose **Option A: OpenAI API** (specifically via Groq's API) for several compelling reasons. First, API-based LLMs provide fully functional reliability and consistent output quality without the computational overhead of running models locally. I implemented a **strategic multi-model architecture** that evolved throughout development to optimize for different use cases:
 
 **llama-3.3-70b-versatile** handles all creative content generation and expert consultation:
 - **Product Story Generation** - Rich, narrative-driven fragrance descriptions with streaming output
@@ -141,7 +141,7 @@ From an **ethical perspective**, several considerations are critical for real-wo
 
 **Customer Behavior Alignment:** The tone selector directly addresses customer behavior analysis by allowing brands to tailor messaging to specific demographics. For example, a Gen-Z audience might respond better to "Playful" or "Bold" tones, while luxury department store customers might prefer "Sophisticated" or "Luxurious" voices. By A/B testing different tones with customer segments, brands could optimize conversion rates and build stronger emotional connections with their target markets. This data-centric approach to copywriting transforms what was once purely creative work into a measurable, optimizable business function.
 
-In conclusion, this project demonstrates how generative AI can augment creative workflows in luxury goods marketing while highlighting the importance of thoughtful prompt engineering, ethical content generation, and user-centered design in building production-ready AI applications.
+In conclusion, this project demonstrates how generative AI can augment creative workflows in luxury goods marketing while highlighting the importance of thoughtful prompt engineering, ethical content generation, and user-centered design in building fully functional AI applications.
 
 ---
 

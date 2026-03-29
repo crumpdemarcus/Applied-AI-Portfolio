@@ -55,7 +55,7 @@ NuVision News leverages advanced NLP and AI to provide:
 
 **Competitive Advantages:**
 - Only platform combining semantic clustering with bias analysis
-- Server-side AI architecture enables production-scale deployment
+- Server-side AI architecture enables comprehensive deployment
 - Graceful degradation allows demo functionality without API dependencies
 - Open-source, extensible architecture for custom integrations
 
@@ -191,7 +191,7 @@ Efficient implementation handles 2000+ articles with sub-second clustering using
 |-----------|-----------|---------------|
 | **Frontend Framework** | React 18 + TypeScript | Type safety, component reusability, large ecosystem |
 | **Build Tool** | Vite | Fast HMR, modern ESM support, optimized production builds |
-| **UI Components** | shadcn/ui + Radix UI | Accessible, customizable, production-ready components |
+| **UI Components** | shadcn/ui + Radix UI | Accessible, customizable, fully functional components |
 | **Styling** | Tailwind CSS | Rapid development, consistent design system, small bundle |
 | **State Management** | React Query + Hooks | Server state caching, automatic refetching, optimistic updates |
 | **Routing** | React Router v6 | Declarative routing, nested routes, data loaders |

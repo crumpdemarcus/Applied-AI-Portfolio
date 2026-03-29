@@ -7,7 +7,7 @@
 
 ## Overview
 
-Three projects and a lab notebook built during my Deep Learning coursework (ITAI-2376), each tackling a different way to communicate neural network concepts through software. The work ranges from a production-grade React application to a hand-illustrated interactive web comic — demonstrating both technical depth in deep learning and the ability to translate complex ideas into polished, user-facing products.
+Three projects and four lab notebooks built during my Deep Learning coursework (ITAI-2376), each tackling a different way to communicate neural network concepts through software. The work ranges from a feature-complete React application to a hand-illustrated interactive web comic — demonstrating both technical depth in deep learning and the ability to translate complex ideas into polished, user-facing products.
 
 ## Projects
 
@@ -50,7 +50,10 @@ Formal deep learning deliverables exploring an *Arrival*-inspired theme — a fi
 
 | Notebook | Topics Covered |
 |---|---|
-| [L08 — Diffusion Models](./L08_Diffusion_DeMarcus_Crump_ITAI_2376.pdf) | Denoising diffusion probabilistic models (DDPMs), forward/reverse diffusion process, noise scheduling, U-Net architecture for denoising, image generation from random noise |
+| [Lab 02 — Neural Network Foundations](./Lab-02-Neural-Network-Foundations.ipynb) | PyTorch vs. TensorFlow comparison, building neural networks from scratch, environment setup, data preparation, framework-based model training |
+| [Lab 03 — CNN Image Classification](./Lab-03-CNN-Image-Classification.ipynb) | Convolutional Neural Networks, image classification (Puppy vs. Bagel), convolutional/pooling layers, fully connected layers, transfer learning, data augmentation |
+| [Lab 05 — RNNs, Transformers & ViT](./Lab-05-RNNs-Transformers-ViT.ipynb) | Recurrent Neural Networks (LSTM & GRU), Transformer architecture, Vision Transformers (ViT), sequence-to-sequence models, attention mechanisms |
+| [Lab 08 — Diffusion Models](./Lab-08-Diffusion-Models.pdf) | Denoising diffusion probabilistic models (DDPMs), forward/reverse diffusion process, noise scheduling, U-Net architecture for denoising, image generation from random noise |
 
 ---
 
@@ -115,16 +118,19 @@ This course covered the theory and practice of deep learning from the ground up.
 ```
 ITAI-2376-Deep-Learning/
 ├── README.md
-├── L08_Diffusion_DeMarcus_Crump_ITAI_2376.pdf   # Lab 08: Diffusion Models
-├── ConvoShrimp/                                   # React/Vite CNN visualization app
+├── Lab-02-Neural-Network-Foundations.ipynb         # Lab 02: PyTorch vs. TensorFlow
+├── Lab-03-CNN-Image-Classification.ipynb           # Lab 03: CNNs (Puppy or Bagel)
+├── Lab-05-RNNs-Transformers-ViT.ipynb             # Lab 05: RNNs, Transformers, ViT
+├── Lab-08-Diffusion-Models.pdf                     # Lab 08: Diffusion Models
+├── ConvoShrimp/                                    # React/Vite CNN visualization app
 │   ├── src/
 │   ├── public/
 │   └── package.json
-├── Neural-Network-Squad/                          # Interactive educational web comic
+├── Neural-Network-Squad/                           # Interactive educational web comic
 │   ├── index.html
 │   ├── images/
 │   └── screenshots/
-└── Arrival/                                       # Presentation & report PDFs
+└── Arrival/                                        # Presentation & report PDFs
     ├── Arrival_Final_Presentation_ITAI_2376.pdf
     └── Arrival_Heptapod_Lab_Report.pdf
 ```

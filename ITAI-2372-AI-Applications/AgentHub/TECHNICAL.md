@@ -211,7 +211,7 @@ class AIValidator:
 
 ### ML-Powered Validation (New)
 
-AgentHub now uses state-of-the-art transformer models for production-grade validation with 92% accuracy (vs 70% rule-based).
+AgentHub now uses state-of-the-art transformer models for feature-complete validation with 92% accuracy (vs 70% rule-based).
 
 **Architecture:**
 ```python

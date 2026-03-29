@@ -1,12 +1,12 @@
 # DeMarcus Crump - Applied AI Portfolio
 
-[![GitHub](https://img.shields.io/badge/GitHub-dcthedeveloper-blue?logo=github)](https://github.com/dcthedeveloper)
+[![GitHub](https://img.shields.io/badge/GitHub-crumpdemarcus-blue?logo=github)](https://github.com/crumpdemarcus)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![AI/ML](https://img.shields.io/badge/AI%2FML-Applied%20Projects-green.svg)](https://github.com/dcthedeveloper)
+[![AI/ML](https://img.shields.io/badge/AI%2FML-Applied%20Projects-green.svg)](https://github.com/crumpdemarcus)
 
 ## About Me
 
-AI developer completing an Artificial Intelligence A.A.S. at Houston City College. I build production-ready applications that integrate large language models, computer vision, natural language processing, and deep learning — with a focus on shipping polished, user-facing products backed by solid engineering.
+AI developer completing an Artificial Intelligence A.A.S. at Houston City College. I build fully functional applications that integrate large language models, computer vision, natural language processing, and deep learning — with a focus on shipping polished, user-facing products backed by solid engineering.
 
 ## Technical Skills
 
@@ -35,7 +35,7 @@ AI developer completing an Artificial Intelligence A.A.S. at Houston City Colleg
 
 ### AI Applications (ITAI-2372)
 
-Production-ready AI applications with real-world impact — LLM integration, blockchain infrastructure, and health analytics.
+Fully functional AI applications with real-world impact — LLM integration, blockchain infrastructure, and health analytics.
 
 #### [Aura Intelligence](./ITAI-2372-AI-Applications/Aura-Intelligence/)
 An AI-powered fragrance marketing platform leveraging Groq's advanced language models to transform technical fragrance notes into narrative-driven product descriptions.
@@ -44,7 +44,7 @@ An AI-powered fragrance marketing platform leveraging Groq's advanced language m
 - Dual-mode AI system: Storyteller Mode (creative content) & Curator Mode (conversational recommendations)
 - Multi-agent architecture with 3 specialized AI agents
 - Real-time streaming responses using Flask Server-Sent Events
-- Production-ready web application with luxury design system
+- Fully functional web application with luxury design system
 
 **Technologies:** Python, Flask, Groq API (Llama 3.3), JavaScript, HTML/CSS
 
@@ -146,15 +146,15 @@ Formal deep learning deliverables — a final presentation deck and technical la
 
 ---
 
-#### [Lab 08 — Diffusion Models](./ITAI-2376-Deep-Learning/L08_Diffusion_DeMarcus_Crump_ITAI_2376.pdf)
-A 89-page Jupyter notebook covering denoising diffusion probabilistic models (DDPMs) — from the forward noising process through reverse denoising and image generation.
+#### [Deep Learning Lab Notebooks](./ITAI-2376-Deep-Learning/)
+Hands-on deep learning notebooks covering neural network fundamentals, CNNs, sequence models, and generative models:
 
-**Topics Covered:**
-- Forward/reverse diffusion process and noise scheduling
-- U-Net architecture for denoising
-- Image generation from random noise
+- **Lab 02** — Neural network foundations, PyTorch vs. TensorFlow comparison
+- **Lab 03** — CNN image classification (Puppy vs. Bagel)
+- **Lab 05** — RNNs vs. Transformers vs. Vision Transformers
+- **Lab 08** — Denoising diffusion probabilistic models (DDPMs)
 
-**Technologies:** Python, PyTorch, Diffusion Models, Jupyter Notebooks
+**Technologies:** Python, PyTorch, TensorFlow, Keras, Hugging Face Transformers, Jupyter Notebooks
 
 ---
 
@@ -174,7 +174,7 @@ Image classification, feature detection, and deep learning model implementations
 ## Portfolio Structure
 
 ```
-DeMarcus-Crump-AI-Portfolio/
+Applied-AI-Portfolio/
 │
 ├── README.md                                    # This file
 │
@@ -191,21 +191,24 @@ DeMarcus-Crump-AI-Portfolio/
 │   ├── ConvoShrimp/                             # CNN visualization app (React)
 │   ├── Neural-Network-Squad/                    # Interactive web comic
 │   ├── Arrival/                                 # Research presentations
-│   └── L08_Diffusion_*.pdf                      # Lab: Diffusion Models
+│   ├── Lab-02-Neural-Network-Foundations.ipynb   # Lab: PyTorch vs. TensorFlow
+│   ├── Lab-03-CNN-Image-Classification.ipynb     # Lab: CNNs (Puppy or Bagel)
+│   ├── Lab-05-RNNs-Transformers-ViT.ipynb       # Lab: RNNs, Transformers, ViT
+│   └── Lab-08-Diffusion-Models.pdf              # Lab: Diffusion Models
 │
 ├── ITAI-1378-Computer-Vision/                   # Computer Vision
 │   ├── Workplace-Safety-PPE-Detection-System/   # YOLOv8 object detection
 │   └── Lab Notebook (L04)                       # CV lab
 │
 └── Presentation/
-    └── Pf_DeMarcusCrump_ITAI2376.pdf           # Portfolio presentation
+    └── Pf_DeMarcusCrump_ITAI2376.html          # Portfolio presentation
 ```
 
 ---
 
 ## Key Achievements
 
-**Full-Stack AI Development:** Built production-ready web applications integrating LLMs and AI APIs  
+**Full-Stack AI Development:** Built fully functional web applications integrating LLMs and AI APIs  
 **Blockchain Integration:** Implemented custom blockchain with smart contracts for decentralized AI marketplace  
 **Multi-Agent Systems:** Designed sophisticated AI architectures with specialized agents  
 **Deep Learning Communication:** Built interactive applications that visualize CNN architectures, activation functions, and neural network fundamentals for technical and non-technical audiences  
@@ -227,7 +230,7 @@ DeMarcus-Crump-AI-Portfolio/
 
 **Email:** crumpdemarcus@gmail.com  
 **LinkedIn:** https://www.linkedin.com/in/demarcus-crump/  
-**GitHub:** [@dcthedeveloper](https://github.com/dcthedeveloper)
+**GitHub:** [@crumpdemarcus](https://github.com/crumpdemarcus)
 
 ---
 

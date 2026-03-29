@@ -10,7 +10,7 @@
 
 Convolutional Neural Networks are among the most widely used deep learning architectures, yet their internal mechanics — convolution, pooling, feature extraction, classification — remain abstract to most learners. Existing educational resources tend to rely on static diagrams or dense academic text, making it difficult for visual and interactive learners to build genuine intuition about how CNNs process information.
 
-## Approach & Methodology
+## Approach and Methodology
 
 We designed an interactive React application that maps each stage of a CNN pipeline to the biology of the mantis shrimp — an animal with 16 types of photoreceptors (vs. 3 in humans), making it a natural metaphor for multi-channel visual processing. The app uses scroll-driven animation to walk users through convolution, pooling, feature maps, and classification, with embedded PyTorch code examples and a historical timeline of CNN evolution (LeNet → EfficientNet).
 
@@ -20,7 +20,7 @@ We designed an interactive React application that maps each stage of a CNN pipel
 - **Prism.js** for syntax-highlighted PyTorch code blocks
 - **@react-pdf/renderer + html2pdf.js** for one-click PDF export of the full presentation
 
-## Results & Evaluation
+## Results and Evaluation
 
 - Production build compiles successfully (Vite, 2365 modules, 2.98s build time)
 - Fully responsive across desktop and mobile viewports
@@ -45,7 +45,7 @@ We designed an interactive React application that maps each stage of a CNN pipel
 | **PDF Generation** | @react-pdf/renderer, html2pdf.js |
 | **Deep Learning** | PyTorch-based example code |
 
-## Requirements & Dependencies
+## Requirements or Dependencies
 
 - Node.js 18+
 - npm
@@ -77,7 +77,11 @@ ConvoShrimp/
 └── vite.config.js
 ```
 
-## What I Learned (Deep Learning Concepts)
+## Sample Data Access
+
+This application is primarily a frontend visualization tool and uses predefined data structures (e.g., in `src/data/anatomyData.js`) to drive the interactive components and PyTorch code snippets. No external dataset download is required.
+
+## Learning Outcomes
 
 **CNN Architecture — layer by layer:**
 - **Convolution layers** apply learnable kernels (3×3) that slide across the input computing dot products. The first layer detects edges and gradients; deeper layers combine those into textures (layer 2, 64 filters) and object parts (layer 3, 128 filters). I learned that each filter learns a different feature detector through backpropagation.

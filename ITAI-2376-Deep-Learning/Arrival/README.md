@@ -4,11 +4,11 @@
 
 Deep learning concepts like sequence-to-sequence models, attention mechanisms, and language representation are highly technical. This project explored how to present these ideas clearly through a creative thematic lens — using the film *Arrival* and its heptapod language system as a framework for analyzing neural network approaches to language understanding.
 
-## Approach & Methodology
+## Approach and Methodology
 
 The project produced two formal deliverables: a final presentation deck and a technical lab report. Both artifacts frame deep learning architectures through the *Arrival* scenario, connecting sequence modeling and neural language processing to the fictional challenge of decoding heptapod communication. The work required synthesizing deep learning theory, structuring a coherent technical narrative, and designing presentation materials suitable for a professional audience.
 
-## Results & Evaluation
+## Results and Evaluation
 
 - Final presentation delivered to class and instructor with positive feedback on clarity and thematic integration
 - Lab report documents analysis and findings in a formal research-style format
@@ -21,11 +21,15 @@ The project produced two formal deliverables: a final presentation deck and a te
 | `Arrival_Final_Presentation_ITAI_2376.pdf` | Final presentation — deep learning concepts applied to the *Arrival* scenario |
 | `Arrival_Heptapod_Lab_Report.pdf` | Technical lab report with analysis and findings |
 
-## Requirements & Dependencies
+## Requirements or Dependencies
 
 No code or installation required. Deliverables are PDF documents viewable in any PDF reader.
 
-## What I Learned (Deep Learning Concepts)
+## Sample Data Access
+
+This project consists of research and presentations. No external dataset downloads or preprocessing scripts are required.
+
+## Learning Outcomes
 
 **Sequence-to-sequence models:**
 - Studied encoder-decoder architectures where an encoder processes a variable-length input sequence into a fixed-length context vector, and a decoder generates an output sequence from that vector. Applied this to the heptapod language scenario — framing alien symbol decoding as a sequence transduction problem.

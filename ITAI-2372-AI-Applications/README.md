@@ -1,8 +1,13 @@
 # AI Applications — Project Showcase
 
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-Web%20Framework-lightgrey.svg)](https://flask.palletsprojects.com/)
+[![Groq](https://img.shields.io/badge/Groq-LLM%20API-orange.svg)](https://groq.com/)
+[![Blockchain](https://img.shields.io/badge/Blockchain-Custom%20Implementation-green.svg)](https://github.com/dcthedeveloper)
+
 ## Overview
 
-Three production-grade AI applications built during my AI Applications coursework (ITAI-2372). Each project solves a different real-world problem — from LLM-powered content generation to blockchain-based trust infrastructure to health analytics — demonstrating full-stack development, API integration, and system architecture skills.
+Three feature-complete AI applications built during my AI Applications coursework (ITAI-2372). Each project solves a different real-world problem — from LLM-powered content generation to blockchain-based trust infrastructure to health analytics — demonstrating full-stack development, API integration, and system architecture skills.
 
 ## Projects
 
@@ -14,7 +19,7 @@ An enterprise-grade application that transforms fragrance descriptions into comp
 | | |
 |---|---|
 | **Stack** | Python, Flask, Groq API (Llama 3.3), JavaScript, HTML/CSS |
-| **Highlights** | Multi-agent architecture with 3 specialized AI agents · real-time SSE streaming · luxury e-commerce UX · production-ready deployment |
+| **Highlights** | Multi-agent architecture with 3 specialized AI agents · real-time SSE streaming · luxury e-commerce UX · fully functional deployment |
 
 ---
 

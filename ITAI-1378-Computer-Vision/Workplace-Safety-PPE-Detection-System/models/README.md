@@ -154,7 +154,7 @@ model.export(format='onnx')
 ```
 
 ### TorchScript Format
-**Use Case**: PyTorch production deployment  
+**Use Case**: PyTorch cloud deployment  
 **Size**: ~43.1 MB  
 **Export**:
 ```python
@@ -279,5 +279,5 @@ for result in results:
 
 - Model files are large and excluded from Git via `.gitignore`
 - Best practice: Upload model to Google Drive or GitHub Releases for sharing
-- For production deployment, consider model quantization to reduce size
+- For cloud deployment, consider model quantization to reduce size
 - Retrain with your own data for site-specific improvements

@@ -1,6 +1,6 @@
 # Model Results & Performance Analysis
 
-This directory contains the comprehensive performance data, evaluation metrics, and visual images by the **Workplace Safety PPE Detection System**. The results confirm that the **YOLOv8s (Small)** model is production-ready, achieving a **77.1% mAP@50** with highly reliable precision for safety-critical monitoring.
+This directory contains the comprehensive performance data, evaluation metrics, and visual images by the **Workplace Safety PPE Detection System**. The results confirm that the **YOLOv8s (Small)** model is fully functional, achieving a **77.1% mAP@50** with highly reliable precision for safety-critical monitoring.
 
 ---
 

@@ -12,7 +12,7 @@
 
 ## 🚀 Project Overview
 
-This folder contains the **Final Project** deliverable for ITAI 2373. This is **NuVision News**, a production-ready news intelligence platform that evolved from the midterm Python/Jupyter notebook into a full-stack web application with advanced NLP and AI features.
+This folder contains the **Final Project** deliverable for ITAI 2373. This is **NuVision News**, a fully functional news intelligence platform that evolved from the midterm Python/Jupyter notebook into a full-stack web application with advanced NLP and AI features.
 
 ### Evolution from Midterm to NuVision News
 
@@ -85,7 +85,7 @@ This folder contains the **Final Project** deliverable for ITAI 2373. This is **
 - Translation integration ready (not activated in current demo)
 - Cross-lingual topic alignment framework
 
-**Note:** While not fully activated in the demo, the infrastructure is production-ready for multilingual expansion.
+**Note:** While not fully activated in the demo, the infrastructure is fully functional for multilingual expansion.
 
 ---
 

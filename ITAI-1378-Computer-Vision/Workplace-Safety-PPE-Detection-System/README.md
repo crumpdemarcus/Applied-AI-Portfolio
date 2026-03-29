@@ -35,17 +35,17 @@
 - Implements multi-class detection (10 classes) with both positive and negative cases
 - Requires understanding of stratified data splitting, advanced augmentation techniques
 - Involves training from pretrained weights with custom dataset
-- Achieves production-ready performance (77.1% mAP@50, 66 FPS)
+- Achieves fully functional performance (77.1% mAP@50, 66 FPS)
 - Goes beyond tutorial implementation with custom evaluation metrics and safety compliance analysis
 
 ---
 
 ## Problem & Solution
 
-### The Problem
+## Problem Statement
 Construction sites have high injury rates due to PPE non-compliance. Manual safety inspections are slow, inconsistent, and cannot cover all workers continuously. This leads to undetected violations and preventable workplace accidents.
 
-### Our Solution
+## Approach and Methodology
 An automated computer vision system using YOLOv8 that detects PPE compliance in real-time. The system identifies whether workers are wearing required safety equipment (hardhats, vests, masks) and flags violations instantly, enabling proactive safety monitoring at scale.
 
 ### Impact
@@ -117,7 +117,7 @@ An AI-powered computer vision system that automatically detects Personal Protect
 
 ---
 
-## Dataset
+## Sample Data Access
 
 **Source**: [Construction Site Safety Image Dataset - Roboflow](https://www.kaggle.com/datasets/snehilsanyal/construction-site-safety-image-dataset-roboflow)  
 **Size**: 2,801 images with YOLO format annotations  
@@ -256,7 +256,7 @@ Workplace-Safety-PPE-Detection-System/
 
 ## How to Run
 
-### Requirements
+## Requirements or Dependencies
 - Python 3.8 or higher
 - 8GB RAM minimum
 - GPU recommended for training (CPU works but is slow)
@@ -421,7 +421,7 @@ os.makedirs('/content/drive/MyDrive/PPE_Project', exist_ok=True)
 
 ---
 
-## Results
+## Results and Evaluation
 
 ### Success Cases
 
@@ -486,7 +486,7 @@ While the model performs well overall, it occasionally struggles with:
 
 ---
 
-## Key Learnings
+## Learning Outcomes
 
 ### What Worked Well
 
@@ -566,7 +566,7 @@ While the model performs well overall, it occasionally struggles with:
 
 The trained model can be deployed in multiple formats:
 - **ONNX**: Cross-platform deployment, TensorRT optimization
-- **TorchScript**: PyTorch production environments
+- **TorchScript**: PyTorch deployment environments
 - **TFLite**: Mobile and edge devices (Android/iOS apps)
 - **ONNX Runtime**: High-performance inference on CPU/GPU
 
