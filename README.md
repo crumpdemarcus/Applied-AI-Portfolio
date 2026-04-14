@@ -1,8 +1,36 @@
 # DeMarcus Crump - Applied AI Portfolio
 
-[![GitHub](https://img.shields.io/badge/GitHub-crumpdemarcus-blue?logo=github)](https://github.com/crumpdemarcus)
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![AI/ML](https://img.shields.io/badge/AI%2FML-Applied%20Projects-green.svg)](https://github.com/crumpdemarcus)
+<div align="center">
+
+[![GitHub last commit](https://img.shields.io/github/last-commit/crumpdemarcus/Applied-AI-Portfolio?style=flat-square&color=blue)](https://github.com/crumpdemarcus/Applied-AI-Portfolio)
+[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](./LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/crumpdemarcus/Applied-AI-Portfolio?style=flat-square)](https://github.com/crumpdemarcus/Applied-AI-Portfolio/stargazers)
+
+**Core Tech Stack**
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+
+**Specializations**
+
+![NLP](https://img.shields.io/badge/NLP-Natural%20Language%20Processing-blueviolet?style=for-the-badge)
+![CV](https://img.shields.io/badge/CV-Computer%20Vision-blueviolet?style=for-the-badge)
+![Deep Learning](https://img.shields.io/badge/DL-Deep%20Learning-blueviolet?style=for-the-badge)
+![Generative AI](https://img.shields.io/badge/GenAI-Generative%20AI-orange?style=for-the-badge)
+
+**Connect**
+
+[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/demarcus-crump/)
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/crumpdemarcus)
+[![Email](https://img.shields.io/badge/Email-crumpdemarcus%40gmail.com-blue?style=for-the-badge&logo=gmail)](mailto:crumpdemarcus@gmail.com)
+
+</div>
+
+<br/>
 
 ## About Me
 
