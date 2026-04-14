@@ -1,10 +1,17 @@
-# Aura Intelligence  
-### The Olfactory Storyteller & Curator  
+# Aura Intelligence
+### The Olfactory Storyteller & Curator
 
-[![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/)
-[![Flask](https://img.shields.io/badge/Flask-3.0+-green.svg)](https://flask.palletsprojects.com/)
-[![Groq](https://img.shields.io/badge/Groq-API-orange.svg)](https://console.groq.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[← Back to Portfolio](../../README.md)
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-Cloud-orange?style=for-the-badge)
+![Llama 3.3](https://img.shields.io/badge/Model-Llama%203.3-blue?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+
+</div>
 
 ---
 

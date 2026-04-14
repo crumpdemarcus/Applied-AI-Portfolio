@@ -1,11 +1,16 @@
 # PPE Detection System - Construction Site Safety
 
-![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
-![PyTorch](https://img.shields.io/badge/framework-PyTorch-orange.svg)
-![YOLOv8](https://img.shields.io/badge/model-YOLOv8s-blueviolet.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Status](https://img.shields.io/badge/status-complete-success.svg)
-![mAP](https://img.shields.io/badge/mAP@50-77.1%25-brightgreen.svg)
+[← Back to Portfolio](../../README.md)
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
+![YOLOv8](https://img.shields.io/badge/YOLOv8-Small-blueviolet?style=for-the-badge)
+![mAP](https://img.shields.io/badge/mAP@50-77.1%25-brightgreen?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+
+</div>
 
 > An AI-powered computer vision system for automated workplace safety monitoring
 

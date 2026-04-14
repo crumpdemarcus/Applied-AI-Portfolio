@@ -1,11 +1,16 @@
 # AgentHub
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![Blockchain Enabled](https://img.shields.io/badge/blockchain-enabled-green.svg)](https://github.com/dcthedeveloper/AgentHub)
-[![ML Validation](https://img.shields.io/badge/ML-transformer--based-orange.svg)](https://github.com/dcthedeveloper/AgentHub)
-[![Accuracy: 92%](https://img.shields.io/badge/accuracy-92%25-success.svg)](https://github.com/dcthedeveloper/AgentHub)
-[![Status: Fully Functional](https://img.shields.io/badge/status-fully--functional-success.svg)](https://github.com/dcthedeveloper/AgentHub)
+[← Back to Portfolio](../../README.md)
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Blockchain](https://img.shields.io/badge/Blockchain-Enabled-green?style=for-the-badge)
+![ML Validation](https://img.shields.io/badge/ML-Transformer--Based-orange?style=for-the-badge)
+![Accuracy](https://img.shields.io/badge/Accuracy-92%25-success?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
+
+</div>
 
 > **A blockchain-powered autonomous agent marketplace with built-in trust infrastructure for AI-driven work verification.**
 

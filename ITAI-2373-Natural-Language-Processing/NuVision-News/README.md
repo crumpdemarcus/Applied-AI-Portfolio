@@ -1,12 +1,17 @@
 # NuVision News
 ## NewsBot Intelligence System - Advanced NLP Integration Platform
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![GitHub stars](https://img.shields.io/github/stars/dcthedeveloper/NuVision-News2.0?style=social)](https://github.com/dcthedeveloper/NuVision-News2.0/stargazers)
-[![Last commit](https://img.shields.io/github/last-commit/dcthedeveloper/NuVision-News2.0/main)](https://github.com/dcthedeveloper/NuVision-News2.0/commits/main)
+[← Back to Portfolio](../../README.md)
+
+<div align="center">
+
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![NLP](https://img.shields.io/badge/NLP-Advanced-blueviolet?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+
+</div>
 
 **ITAI 2373 Final Project - Houston City College**  
 **Team Members:** DeMarcus Crump, Yoana Cook, Chloe Tu  
