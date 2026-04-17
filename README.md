@@ -6,21 +6,27 @@
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](./LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/crumpdemarcus/Applied-AI-Portfolio?style=flat-square)](https://github.com/crumpdemarcus/Applied-AI-Portfolio/stargazers)
 
-**Core Tech Stack**
+**AI / ML**
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)
+![OpenCV](https://img.shields.io/badge/OpenCV-27338e?style=for-the-badge&logo=OpenCV&logoColor=white)
+
+**Web / Infra**
+
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
 **Specializations**
 
-![NLP](https://img.shields.io/badge/NLP-Natural%20Language%20Processing-blueviolet?style=for-the-badge)
-![CV](https://img.shields.io/badge/CV-Computer%20Vision-blueviolet?style=for-the-badge)
-![Deep Learning](https://img.shields.io/badge/DL-Deep%20Learning-blueviolet?style=for-the-badge)
-![Generative AI](https://img.shields.io/badge/GenAI-Generative%20AI-orange?style=for-the-badge)
+![NLP](https://img.shields.io/badge/Natural%20Language%20Processing-0EA5E9?style=for-the-badge)
+![CV](https://img.shields.io/badge/Computer%20Vision-10B981?style=for-the-badge)
+![Deep Learning](https://img.shields.io/badge/Deep%20Learning-8B5CF6?style=for-the-badge)
+![Generative AI](https://img.shields.io/badge/Generative%20AI-F97316?style=for-the-badge)
 
 **Connect**
 
@@ -34,7 +40,7 @@
 
 ## About Me
 
-AI developer completing an Artificial Intelligence A.A.S. at Houston City College. I build fully functional applications that integrate large language models, computer vision, natural language processing, and deep learning — with a focus on shipping polished, user-facing products backed by solid engineering.
+AI developer completing an Artificial Intelligence A.A.S. at Houston City College. I build fully functional applications that integrate large language models, computer vision, natural language processing, and deep learning — with a focus on shipping polished, user-facing products backed by solid engineering. Projects span four semesters across AI applications, NLP, deep learning, and computer vision.
 
 ## Technical Skills
 
@@ -53,9 +59,8 @@ AI developer completing an Artificial Intelligence A.A.S. at Houston City Colleg
 
 **Tools & Platforms:**
 - Jupyter Notebooks, Google Colab
-- Groq API, OpenAI API
-- Git, GitHub
-- VS Code, Python Development
+- Groq API, OpenAI API, Hugging Face Transformers
+- OpenCV, NLTK, spaCy, scikit-learn
 
 ---
 
@@ -188,14 +193,27 @@ Hands-on deep learning notebooks covering neural network fundamentals, CNNs, seq
 
 ### Computer Vision (ITAI-1378)
 
-Hands-on image processing, object detection, and visual pattern recognition using deep learning models.
+Real-world object detection and visual pattern recognition using deep learning models.
+
+#### [Workplace Safety PPE Detection System](./ITAI-1378-Computer-Vision/Workplace-Safety-PPE-Detection-System/)
+A custom-trained YOLOv8 system for real-time PPE compliance monitoring in workplace environments, detecting 10 equipment classes (hard hats, safety vests, gloves, goggles) with transfer learning.
+
+**Key Features:**
+- Real-time 10-class PPE detection with confidence scoring
+- Custom YOLOv8 training with transfer learning on a workplace safety dataset
+- End-to-end CV pipeline: data preparation, training, evaluation, and inference
+- Team project with full evaluation metrics (precision, recall, F1, confusion matrix)
+
+**Technologies:** Python, YOLOv8, PyTorch, OpenCV
+
+---
 
 #### [Computer Vision Lab Notebooks](./ITAI-1378-Computer-Vision/)
 Image classification, feature detection, and deep learning model implementations:
 
-- **L04** — Image classification, custom CNNs, transfer learning (VGG, ResNet), data augmentation
+- **L04** — Image preprocessing, custom CNNs, transfer learning (VGG16, ResNet50, MobileNetV2), data augmentation
 
-**Technologies:** Python, OpenCV, TensorFlow, Keras, CNN Architectures, Jupyter Notebooks
+**Technologies:** Python, OpenCV, TensorFlow, Keras, scikit-learn, Jupyter Notebooks
 
 ---
 
@@ -234,17 +252,6 @@ Applied-AI-Portfolio/
 
 ---
 
-## Key Achievements
-
-**Full-Stack AI Development:** Built fully functional web applications integrating LLMs and AI APIs  
-**Blockchain Integration:** Implemented custom blockchain with smart contracts for decentralized AI marketplace  
-**Multi-Agent Systems:** Designed sophisticated AI architectures with specialized agents  
-**Deep Learning Communication:** Built interactive applications that visualize CNN architectures, activation functions, and neural network fundamentals for technical and non-technical audiences  
-**Real-World Applications:** Created AI solutions for fragrance marketing, health management, and news analysis  
-**Research & Documentation:** Comprehensive technical documentation and project write-ups  
-
----
-
 ## What I Bring
 
 - **Technical Depth** — From CNN architecture visualization to custom blockchain with smart contracts
@@ -254,19 +261,4 @@ Applied-AI-Portfolio/
 
 ---
 
-## Contact
-
-**Email:** crumpdemarcus@gmail.com  
-**LinkedIn:** https://www.linkedin.com/in/demarcus-crump/  
-**GitHub:** [@crumpdemarcus](https://github.com/crumpdemarcus)
-
----
-
-## About This Portfolio
-
-**Degree Program:** Artificial Intelligence, A.A.S. — Houston City College  
-Projects built across four semesters covering AI applications, NLP, deep learning, and computer vision.
-
----
-
-*Last Updated: March 2026*
+*Last Updated: April 2026*
