@@ -96,16 +96,16 @@ A blockchain-powered autonomous agent marketplace with built-in trust infrastruc
 
 ---
 
-#### [Asthma & Allergy Co-Pilot](./ITAI-2372-AI-Applications/Asthma-Allergy-Co-Pilot/)
-An AI-driven respiratory health companion providing personalized asthma and allergy management assistance.
+#### [AeroSense](./ITAI-2372-AI-Applications/Asthma-Allergy-Co-Pilot/)
+An AI-powered respiratory health companion using Google Gemini 2.5 Pro for intelligent symptom interpretation, environmental risk forecasting, and personalized asthma and allergy management.
 
 **Key Features:**
-- Real-time air quality monitoring and alerts
-- Personalized symptom tracking and analysis
-- AI-powered health recommendations
-- Comprehensive research-backed health companion
+- AI symptom checker powered by Google Gemini 2.5 Pro with evidence-based guidance
+- Gradient Boosting ML model for real-time respiratory risk forecasting
+- Live environmental monitoring: AQI, pollen counts, and weather conditions
+- Full-stack application with FastAPI backend, React frontend, and MongoDB
 
-**Technologies:** Python, AI/ML, Health Data Analytics, Full-Stack Development
+**Technologies:** Python, FastAPI, React, Google Gemini 2.5 Pro, MongoDB
 
 ---
 
