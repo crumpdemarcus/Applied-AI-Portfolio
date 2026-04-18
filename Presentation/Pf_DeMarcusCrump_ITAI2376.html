@@ -123,16 +123,20 @@
         }
 
         @media print {
-            body { background: #0a0a0a !important; padding: 0; margin: 0; }
+            html, body {
+                background: #0a0a0a !important;
+                margin: 0 !important; padding: 0 !important;
+                display: block !important; min-height: unset !important;
+                width: 210mm !important;
+            }
             #resume-sheet {
-                width: 100%;
-                height: 100vh;
-                box-shadow: none;
-                border: none;
-                border-radius: 0;
+                width: 210mm !important; height: 297mm !important;
+                margin: 0 !important;
+                box-shadow: none !important; border: none !important; border-radius: 0 !important;
+                overflow: hidden !important;
             }
             .no-print { display: none !important; }
-            * { -webkit-print-color-adjust: exact !important; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
         }
 
         .controls {
