@@ -40,7 +40,7 @@
 
 ## About Me
 
-AI developer completing an Artificial Intelligence A.A.S. at Houston City College. I build fully functional applications that integrate large language models, computer vision, natural language processing, and deep learning — with a focus on shipping polished, user-facing products backed by solid engineering. Projects span four semesters across AI applications, NLP, deep learning, and computer vision.
+AI developer completing an Artificial Intelligence A.A.S. at Houston City College. I build fully functional applications that integrate large language models, computer vision, natural language processing, and deep learning — with a focus on shipping polished, user-facing products backed by solid engineering. Projects span four courses across AI applications, NLP, deep learning, and computer vision.
 
 ## Technical Skills
 
@@ -247,7 +247,8 @@ Applied-AI-Portfolio/
 │   └── Lab Notebook (L04)                       # CV lab
 │
 └── Presentation/
-    └── Pf_DeMarcusCrump_ITAI2376.html          # Portfolio presentation
+    ├── Pf_DeMarcusCrump_ITAI2376.pdf           # One-page portfolio overview
+    └── Pf_DeMarcusCrump_ITAI2376_PitchDeck.pdf # 5-slide pitch deck
 ```
 
 ---
